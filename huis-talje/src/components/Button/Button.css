@@ -1,0 +1,137 @@
+.btn {
+  position: relative;
+  width: 136px;
+  height: 50px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* ================= BASE SHADOW ================= */
+
+.btn__base {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: #8b2900;
+  transform: translateY(6px);
+}
+
+/* ================= SURFACE ================= */
+
+.btn__surface {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* inner stroke */
+.btn__surface::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 999px;
+  border: 5px solid rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+}
+
+/* inner shadow */
+.btn__surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  box-shadow: inset 0 -4px 6px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+
+/* ================= SHINE ================= */
+
+.btn__shine {
+  position: absolute;
+  top: 6px;
+  left: 10px;
+  width: 48px;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* ================= LABEL ================= */
+
+.btn__label {
+  position: relative;
+  z-index: 3;
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+}
+
+/* ================= PRIMARY ================= */
+
+.btn--primary .btn__surface {
+  background: linear-gradient(
+    180deg,
+    #ff8c3d 0%,
+    #f26a1c 55%,
+    #c84a0d 100%
+  );
+}
+
+.btn--primary .btn__base {
+  background: #8b2900;
+}
+
+/* ================= SECONDARY ================= */
+
+.btn--secondary .btn__surface {
+  background: linear-gradient(
+    180deg,
+    #b6cc4b 0%,
+    #7f9e2c 55%,
+    #5f7a1f 100%
+  );
+}
+
+.btn--secondary .btn__base {
+  background: #475f18;
+}
+
+/* ================= TERTIARY ================= */
+
+.btn--tertiary .btn__surface {
+  background: linear-gradient(
+    180deg,
+    #ff89b6 0%,
+    #e04a7b 55%,
+    #b23358 100%
+  );
+}
+
+.btn--tertiary .btn__base {
+  background: #8a2443;
+}
+
+/* ================= INTERACTION ================= */
+
+.btn:hover .btn__surface {
+  filter: brightness(1.05);
+}
+
+.btn:active .btn__surface {
+  transform: translateY(4px);
+}
+
+.btn:active .btn__base {
+  transform: translateY(2px);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
