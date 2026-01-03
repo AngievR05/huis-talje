@@ -48,64 +48,14 @@ document.addEventListener('DOMContentLoaded', function() {
     fadeInOnScroll();
 
     // ==========================================
-    // PARALLAX EFFECT FOR DOODLES
+    // PARALLAX EFFECT (DISABLED)
     // ==========================================
-    function parallaxEffect() {
-        const doodleBackground = document.querySelector('.doodle-background');
-        
-        if (doodleBackground) {
-            window.addEventListener('scroll', function() {
-                const scrolled = window.pageYOffset;
-                const rate = scrolled * 0.3;
-                doodleBackground.style.transform = `translateY(${rate}px)`;
-            });
-        }
-    }
-
-    parallaxEffect();
+    // Parallax removed to keep doodles in place
 
     // ==========================================
-    // HOVER EFFECTS FOR PUZZLE PIECES
+    // FLOATING ANIMATION (DISABLED)
     // ==========================================
-    const puzzlePieces = document.querySelectorAll('.puzzle-piece, .puzzle-piece-large');
-    
-    puzzlePieces.forEach(piece => {
-        piece.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.05) rotate(2deg)';
-            this.style.transition = 'transform 0.3s ease';
-        });
-
-        piece.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1) rotate(0deg)';
-        });
-    });
-
-    // ==========================================
-    // FLOATING ANIMATION FOR HERO ELEMENTS
-    // ==========================================
-    function floatingAnimation() {
-        const clothesline = document.querySelector('.clothesline');
-        
-        if (clothesline) {
-            let position = 0;
-            let direction = 1;
-            
-            setInterval(() => {
-                position += 0.5 * direction;
-                
-                if (position >= 10 || position <= -10) {
-                    direction *= -1;
-                }
-                
-                clothesline.style.transform = `translateY(${position}px)`;
-            }, 50);
-        }
-    }
-
-    // Only run floating animation if user hasn't requested reduced motion
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        floatingAnimation();
-    }
+    // Floating animation removed - washing line stays static
 
     // ==========================================
     // TYPEWRITER EFFECT FOR HERO TEXT (Optional)

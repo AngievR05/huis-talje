@@ -2,74 +2,60 @@
    HUIS TALJE - MAIN JAVASCRIPT
    ========================================== */
 
-// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     
     // ==========================================
     // HEADER SCROLL BEHAVIOR
     // ==========================================
     const header = document.getElementById('main-header');
+    const backToTopBtn = document.getElementById('backToTop');
     let lastScroll = 0;
 
     window.addEventListener('scroll', function() {
         const currentScroll = window.pageYOffset;
         
+        // Header scroll behavior
         if (currentScroll > 100) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
         
+        // Back to top button - show after washing line
+        if (currentScroll > 400) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+        
         lastScroll = currentScroll;
     });
 
+    // Back to top button click
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
     // ==========================================
-    // ACCORDION FUNCTIONALITY WITH HAND ANIMATION
+    // ACCORDION FUNCTIONALITY (Original Behavior)
     // ==========================================
     const accordionCards = document.querySelectorAll('.accordion-card');
-    const handPointer = document.getElementById('hand-pointer');
     
     accordionCards.forEach(card => {
         card.addEventListener('click', function() {
-            const textId = this.getAttribute('data-text');
-            const allTexts = document.querySelectorAll('.description-text');
-            
             // If this card is already active, close it
             if (this.classList.contains('active')) {
                 this.classList.remove('active');
-                handPointer.classList.remove('show');
-                allTexts.forEach(text => {
-                    text.style.display = 'none';
-                    text.classList.remove('show');
-                });
             } else {
                 // Close all other cards
                 accordionCards.forEach(c => c.classList.remove('active'));
-                
-                // Show hand pointer
-                const cardRect = this.getBoundingClientRect();
-                handPointer.style.left = (cardRect.left - 100) + 'px';
-                handPointer.style.top = (cardRect.top + window.scrollY) + 'px';
-                handPointer.classList.add('show');
-                
                 // Open this card
-                setTimeout(() => {
-                    this.classList.add('active');
-                }, 200);
-                
-                // Show corresponding text
-                allTexts.forEach(text => {
-                    text.style.display = 'none';
-                    text.classList.remove('show');
-                });
-                
-                const targetText = document.getElementById(textId);
-                if (targetText) {
-                    setTimeout(() => {
-                        targetText.style.display = 'block';
-                        setTimeout(() => targetText.classList.add('show'), 50);
-                    }, 400);
-                }
+                this.classList.add('active');
             }
         });
     });
@@ -78,55 +64,52 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.accordion-card') && !e.target.closest('.story-cards')) {
             accordionCards.forEach(card => card.classList.remove('active'));
-            handPointer.classList.remove('show');
         }
     });
 
     // ==========================================
-    // PUZZLE PIECE INTERACTION WITH HAND
+    // PUZZLE PIECE INTERACTION
     // ==========================================
-    const puzzlePieces = document.querySelectorAll('.puzzle-piece');
-    const puzzleHand = document.getElementById('puzzle-hand');
+    const puzzleContainers = document.querySelectorAll('.puzzle-container');
+    const puzzleDescription = document.getElementById('puzzle-description');
+    
     const puzzleTexts = {
-        'current': document.getElementById('current-text'),
-        'past': document.getElementById('past-text'),
-        'success': document.getElementById('success-text')
+        'current': {
+            text: "Discover Huis Talje's journey of care and growth, from our current projects building brighter futures, to the past projects that shaped our home, and the success stories that celebrate the children's incredible resilience and achievements.",
+            color: 'orange'
+        },
+        'past': {
+            text: "Over the years, Huis Talje has completed many meaningful projects that continue to shape our home today. From renovated spaces to successful community initiatives, these projects reflect the dedication, teamwork, and compassion that keep Huis Talje growing stronger each year.",
+            color: 'pink'
+        },
+        'success': {
+            text: "Every child at Huis Talje has a unique journey, and our success stories celebrate their growth, resilience, and achievements. From milestones in learning and literacy to personal triumphs, these stories show the lasting impact of care, support, and community involvement.",
+            color: 'purple'
+        }
     };
     
-    puzzlePieces.forEach(piece => {
-        piece.addEventListener('click', function() {
+    puzzleContainers.forEach(container => {
+        container.addEventListener('click', function() {
             const puzzleType = this.getAttribute('data-puzzle');
+            const puzzlePiece = this.querySelector('.puzzle-piece');
             
-            // If this piece is already active, close it
-            if (this.classList.contains('active')) {
-                this.classList.remove('active');
-                puzzleHand.classList.remove('show');
-                
-                // Show default text
-                Object.values(puzzleTexts).forEach(text => text.style.display = 'none');
-                puzzleTexts['current'].style.display = 'block';
-            } else {
-                // Close all other pieces
-                puzzlePieces.forEach(p => p.classList.remove('active'));
-                
-                // Show hand pointer
-                const pieceRect = this.getBoundingClientRect();
-                puzzleHand.style.left = (pieceRect.left - 80) + 'px';
-                puzzleHand.style.top = (pieceRect.top + window.scrollY - 50) + 'px';
-                puzzleHand.classList.add('show');
-                
-                // Activate this piece
-                setTimeout(() => {
-                    this.classList.add('active');
-                }, 200);
-                
-                // Show corresponding text
-                Object.values(puzzleTexts).forEach(text => text.style.display = 'none');
-                if (puzzleTexts[puzzleType]) {
-                    setTimeout(() => {
-                        puzzleTexts[puzzleType].style.display = 'block';
-                    }, 400);
-                }
+            // If this puzzle is already in hand, do nothing
+            if (puzzlePiece.classList.contains('in-hand')) {
+                return;
+            }
+            
+            // Remove in-hand class from all puzzles
+            puzzleContainers.forEach(pc => {
+                pc.querySelector('.puzzle-piece').classList.remove('in-hand');
+            });
+            
+            // Add in-hand class to clicked puzzle (moves it to the hand)
+            puzzlePiece.classList.add('in-hand');
+            
+            // Update text and color
+            if (puzzleTexts[puzzleType]) {
+                puzzleDescription.textContent = puzzleTexts[puzzleType].text;
+                puzzleDescription.className = 'puzzle-description ' + puzzleTexts[puzzleType].color;
             }
         });
     });
@@ -138,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
             
-            // Skip if href is just "#" (for dropdown toggle)
+            // Skip if href is just "#"
             if (href === '#') return;
             
             e.preventDefault();
@@ -157,25 +140,21 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ==========================================
-    // DROPDOWN MENU FOR CONTACT
+    // DROPDOWN MENU (Hover)
     // ==========================================
     const dropdown = document.querySelector('.dropdown');
-    const dropdownToggle = document.querySelector('.dropdown-toggle');
     const dropdownMenu = document.querySelector('.dropdown-menu');
 
-    if (dropdown && dropdownToggle && dropdownMenu) {
-        // Toggle dropdown on click (for mobile)
-        dropdownToggle.addEventListener('click', function(e) {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
-            }
+    // On mobile, allow click to toggle
+    if (dropdown && dropdownMenu && window.innerWidth <= 768) {
+        dropdown.addEventListener('click', function(e) {
+            e.preventDefault();
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
         });
 
-        // Close dropdown when clicking outside
         document.addEventListener('click', function(e) {
             if (!dropdown.contains(e.target)) {
-                dropdownMenu.style.display = '';
+                dropdownMenu.style.display = 'none';
             }
         });
     }
@@ -192,9 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const emailInput = this.querySelector('input[type="email"]');
             const email = emailInput.value;
             
-            // Basic email validation
             if (validateEmail(email)) {
-                // Here you would typically send the email to your backend
                 alert('Thank you for subscribing! We will keep you updated with our latest news.');
                 emailInput.value = '';
             } else {
@@ -203,7 +180,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Email validation helper function
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
@@ -231,111 +207,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==========================================
     // BUTTON CLICK HANDLERS
     // ==========================================
-    const getInvolvedBtns = document.querySelectorAll('.btn-orange');
-    const learnMoreBtns = document.querySelectorAll('.btn-green');
+    const buttons = document.querySelectorAll('.btn');
 
-    getInvolvedBtns.forEach(btn => {
+    buttons.forEach(btn => {
         btn.addEventListener('click', function() {
-            // Check button text to determine action
-            if (this.textContent.trim() === 'Get Involved') {
+            const text = this.textContent.trim();
+            
+            if (text === 'Get Involved') {
                 window.location.href = 'pages/get-involved.html';
-            } else if (this.textContent.trim() === 'Step Inside') {
+            } else if (text === 'Step Inside') {
                 window.location.href = 'pages/inside-talje.html';
+            } else if (text === 'Learn More') {
+                window.location.href = 'pages/projects.html';
             }
         });
     });
-
-    learnMoreBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            window.location.href = 'pages/projects.html';
-        });
-    });
-
-    // ==========================================
-    // SCROLL TO TOP BUTTON (Optional Enhancement)
-    // ==========================================
-    function createScrollToTopButton() {
-        const scrollBtn = document.createElement('button');
-        scrollBtn.innerHTML = '↑';
-        scrollBtn.className = 'scroll-to-top';
-        scrollBtn.style.cssText = `
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #e8642f;
-            color: white;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            display: none;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-        `;
-        
-        document.body.appendChild(scrollBtn);
-
-        // Show/hide button based on scroll position
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) {
-                scrollBtn.style.display = 'block';
-            } else {
-                scrollBtn.style.display = 'none';
-            }
-        });
-
-        // Scroll to top when clicked
-        scrollBtn.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Hover effect
-        scrollBtn.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.1)';
-            this.style.background = '#f07540';
-        });
-
-        scrollBtn.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-            this.style.background = '#e8642f';
-        });
-    }
-
-    // Uncomment to enable scroll to top button
-    // createScrollToTopButton();
-
-    // ==========================================
-    // LAZY LOADING FOR IMAGES (Performance)
-    // ==========================================
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    if (img.dataset.src) {
-                        img.src = img.dataset.src;
-                        img.removeAttribute('data-src');
-                    }
-                    observer.unobserve(img);
-                }
-            });
-        });
-
-        document.querySelectorAll('img[data-src]').forEach(img => {
-            imageObserver.observe(img);
-        });
-    }
 
     // ==========================================
     // KEYBOARD ACCESSIBILITY
     // ==========================================
-    // Allow Enter key to activate accordion cards
     accordionCards.forEach(card => {
         card.setAttribute('tabindex', '0');
         card.setAttribute('role', 'button');
@@ -348,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Update aria-expanded when accordion opens/closes
+        // Update aria-expanded
         const observer = new MutationObserver(function(mutations) {
             mutations.forEach(function(mutation) {
                 if (mutation.attributeName === 'class') {
