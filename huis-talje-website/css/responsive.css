@@ -1,0 +1,386 @@
+/* ==========================================
+   HUIS TALJE - RESPONSIVE STYLES
+   ========================================== */
+
+/* ==========================================
+   TABLET (max-width: 768px)
+   ========================================== */
+@media (max-width: 768px) {
+    /* Typography */
+    h1, .hero-text {
+        font-size: 32px;
+    }
+
+    h2, .section-title {
+        font-size: 36px;
+    }
+
+    .section-title-left {
+        font-size: 28px;
+    }
+
+    /* Navigation */
+    nav ul {
+        gap: 15px;
+    }
+
+    nav a {
+        font-size: 14px;
+    }
+
+    /* Dropdown Menu */
+    .dropdown-menu {
+        left: 0;
+        transform: none;
+        min-width: 150px;
+    }
+
+    /* Hero Section */
+    .hero {
+        padding: 30px 15px;
+    }
+
+    .hero-text {
+        font-size: 28px;
+    }
+
+    .hero-subtext {
+        font-size: 16px;
+    }
+
+    /* Accordion Cards */
+    .story-cards {
+        gap: 15px;
+    }
+
+    .accordion-card.active {
+        width: 100%;
+        max-width: 500px;
+        height: 250px;
+    }
+
+    /* What We Do Section */
+    .puzzle-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .puzzle-pieces {
+        justify-content: center;
+    }
+
+    .success-stories {
+        text-align: center;
+    }
+
+    .puzzle-piece-large {
+        max-width: 300px;
+    }
+
+    /* Heart Section */
+    .heart-section {
+        padding: 40px 25px;
+    }
+
+    .heart-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .heart-illustration {
+        flex: 0 0 150px;
+    }
+
+    .heart-text h2 {
+        font-size: 28px;
+    }
+
+    /* Footer */
+    .footer-content {
+        gap: 30px;
+    }
+
+    .footer-section {
+        min-width: 150px;
+    }
+}
+
+/* ==========================================
+   MOBILE (max-width: 480px)
+   ========================================== */
+@media (max-width: 480px) {
+    /* Typography */
+    h1, .hero-text {
+        font-size: 24px;
+    }
+
+    h2, .section-title {
+        font-size: 28px;
+    }
+
+    .section-title-left {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    /* Header */
+    .logo-image {
+        width: 50px;
+    }
+
+    /* Navigation */
+    nav ul {
+        gap: 10px;
+        flex-direction: column;
+    }
+
+    nav a {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .dropdown-menu {
+        position: static;
+        transform: none;
+        width: 100%;
+        margin-top: 0;
+    }
+
+    /* Hero Section */
+    .hero {
+        padding: 20px 15px;
+    }
+
+    .hero-text {
+        font-size: 22px;
+        line-height: 1.4;
+    }
+
+    .hero-subtext {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    /* Our Story Section */
+    .our-story {
+        padding: 40px 15px;
+    }
+
+    .story-cards {
+        gap: 15px;
+    }
+
+    .accordion-card {
+        width: 120px;
+        height: 120px;
+    }
+
+    .card-title {
+        font-size: 16px;
+    }
+
+    .accordion-card.active {
+        width: 100%;
+        height: 280px;
+        padding: 15px;
+    }
+
+    .accordion-card.active .card-title {
+        font-size: 20px;
+    }
+
+    .card-content {
+        font-size: 13px;
+        max-height: 200px;
+    }
+
+    /* What We Do Section */
+    .what-we-do {
+        padding: 40px 15px;
+    }
+
+    .puzzle-pieces {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .puzzle-piece {
+        width: 120px;
+    }
+
+    .puzzle-text {
+        font-size: 14px;
+    }
+
+    /* Heart Section */
+    .heart-section {
+        padding: 30px 20px;
+        margin: 40px 15px;
+    }
+
+    .heart-section::before,
+    .heart-section::after {
+        height: 20px;
+        background-image: repeating-linear-gradient(
+            90deg,
+            #B9D8FF 0px,
+            #B9D8FF 10px,
+            transparent 10px,
+            transparent 20px
+        );
+    }
+
+    .heart-illustration {
+        flex: 0 0 120px;
+    }
+
+    .heart-text h2 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .heart-text h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .heart-text p {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    /* Footer */
+    footer {
+        padding: 40px 15px 20px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .footer-section {
+        width: 100%;
+        text-align: center;
+    }
+
+    .newsletter {
+        max-width: 100%;
+    }
+
+    .footer-logo {
+        display: flex;
+        justify-content: center;
+    }
+
+    .footer-logo-img {
+        width: 50px;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+/* ==========================================
+   LARGE DESKTOP (min-width: 1200px)
+   ========================================== */
+@media (min-width: 1200px) {
+    /* Hero Section */
+    .hero {
+        padding: 60px 40px;
+    }
+
+    .hero-text {
+        font-size: 48px;
+    }
+
+    .hero-subtext {
+        font-size: 20px;
+    }
+
+    /* Sections */
+    .our-story,
+    .what-we-do {
+        padding: 80px 40px;
+    }
+
+    .section-title {
+        font-size: 56px;
+    }
+
+    .section-title-left {
+        font-size: 42px;
+    }
+
+    /* Accordion Cards */
+    .accordion-card.active {
+        width: 550px;
+        height: 280px;
+    }
+
+    /* Heart Section */
+    .heart-section {
+        max-width: 1100px;
+        padding: 60px 50px;
+    }
+
+    .heart-illustration {
+        flex: 0 0 250px;
+    }
+
+    .heart-text h2 {
+        font-size: 38px;
+    }
+}
+
+/* ==========================================
+   PRINT STYLES
+   ========================================== */
+@media print {
+    header,
+    footer,
+    .btn,
+    nav {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .accordion-card {
+        page-break-inside: avoid;
+    }
+
+    a {
+        text-decoration: underline;
+        color: black;
+    }
+}
+
+/* ==========================================
+   ACCESSIBILITY - REDUCED MOTION
+   ========================================== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .btn:hover {
+        transform: none;
+    }
+
+    .accordion-card:hover {
+        transform: none;
+    }
+}

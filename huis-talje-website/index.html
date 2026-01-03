@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huis Talje - For Severely Intellectually and Physically Handicapped Children</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Over+the+Rainbow&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="images/homepage/Logo.svg" alt="Huis Talje Logo" class="logo-image">
+            </div>
+            <div class="nav-divider"></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="pages/projects.html">Projects</a></li>
+                    <li><a href="pages/get-involved.html">Get Involved</a></li>
+                    <li><a href="pages/inside-talje.html">Inside Huis Talje</a></li>
+                    <li><a href="pages/profile.html">Profile</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Contact Us</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="tel:+27123456789">📞 Phone</a></li>
+                            <li><a href="https://wa.me/27123456789" target="_blank">💬 WhatsApp</a></li>
+                            <li><a href="mailto:info@huistalje.org">✉️ Email</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="images/homepage/Washing Line.svg" alt="Clothesline with baby clothes" class="clothesline">
+
+        <h1 class="hero-text">For severely intellectually and physically<br>handicapped children.</h1>
+        <p class="hero-subtext">Even the smallest donation is a big deal.</p>
+        <button class="btn btn-orange">Get Involved</button>
+
+        <img src="images/homepage/HeaderBorder.svg" alt="Decorative border" class="squiggly-border">
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="our-story">
+        <h2 class="section-title">Our Story</h2>
+        
+        <!-- Background Doodles -->
+        <div class="doodle-background">
+            <img src="images/homepage/Doodle animations.svg" alt="Decorative doodles" class="doodles">
+        </div>
+
+        <!-- Hand Pointer SVG (for animation) -->
+        <img src="images/homepage/Hand.svg" alt="Hand pointer" class="hand-pointer" id="hand-pointer">
+
+        <div class="story-cards">
+            <!-- History Card -->
+            <div class="accordion-card" data-card="history" data-text="history-text">
+                <span class="card-title">Our History</span>
+                <div class="card-icon"></div>
+            </div>
+
+            <!-- How We Care Card -->
+            <div class="accordion-card" data-card="care" data-text="care-text">
+                <span class="card-title">How We Care</span>
+                <div class="card-icon"></div>
+            </div>
+
+            <!-- Our Mission Card -->
+            <div class="accordion-card" data-card="mission" data-text="mission-text">
+                <span class="card-title">Our Mission</span>
+                <div class="card-icon"></div>
+            </div>
+
+            <!-- Community Support Card -->
+            <div class="accordion-card" data-card="community" data-text="community-text">
+                <span class="card-title">Community Support</span>
+                <div class="card-icon"></div>
+            </div>
+        </div>
+
+        <!-- Text Content Below Cards -->
+        <div class="story-description">
+            <p id="history-text" class="description-text">
+                <strong>The Story of Huis Talje</strong><br>
+                Where compassion began with one child and grew into a home filled with hope. Huis Talje's story began in 1999, inspired by one deeply moving event. When a two-year-old boy, severely abused and left with both mental and physical disabilities, had nowhere safe to go, the local community came together in compassion. It became clear that children with such profound needs required a dedicated place of care, love, and specialised support.
+            </p>
+            <p id="care-text" class="description-text" style="display:none;">
+                At Huis Talje, every detail of daily life is shaped by compassion, dignity, and the belief that every child deserves to thrive. Our approach to care goes far beyond providing a roof and a meal — it is about creating a nurturing environment where children with special needs can feel safe, supported, and valued. Each aspect of our care is designed to meet both the emotional and physical needs of every child in our home.
+            </p>
+            <p id="mission-text" class="description-text" style="display:none;">
+                Every action we take at Huis Talje is guided by one purpose: to create a life of dignity, care, and opportunity for children with severe intellectual and physical disabilities. Huis Talje Children's Home exists to provide holistic, compassionate care while building strong partnerships that ensure lasting impact. Our objectives reflect both our daily work and our long-term vision for every child's future.
+            </p>
+            <p id="community-text" class="description-text" style="display:none;">
+                Huis Talje Children's Home primarily cares for children from previously disadvantaged communities. The heart of our support comes from the surrounding community. Local volunteers form our governing body, contribute their time, and assist with donations of food, clothing, equipment, and labour. Local professionals also provide essential services such as auditing and medical care at reduced rates.
+            </p>
+        </div>
+    </section>
+
+    <!-- What We Do Section -->
+    <section class="what-we-do">
+        <h2 class="section-title-left">This Is What We Do</h2>
+        
+        <div class="puzzle-section">
+            <!-- Hand Pointer for Puzzles -->
+            <img src="images/homepage/Hand.svg" alt="Hand pointer" class="puzzle-hand" id="puzzle-hand">
+            
+            <div class="puzzle-pieces">
+                <img src="images/homepage/Puzzle1.svg" alt="Current Projects" class="puzzle-piece" data-puzzle="current" data-text="current-text">
+                <img src="images/homepage/Puzzle2.svg" alt="Past Projects" class="puzzle-piece" data-puzzle="past" data-text="past-text">
+                <img src="images/homepage/Puzzle3.svg" alt="Success Stories" class="puzzle-piece" data-puzzle="success" data-text="success-text">
+            </div>
+        </div>
+
+        <p class="puzzle-text" id="current-text">
+            Discover Huis Talje's journey of care and growth, from our current projects building brighter futures, to the past projects that shaped our home, and the success stories that celebrate the children's incredible resilience and achievements.
+        </p>
+        
+        <p class="puzzle-text" id="past-text" style="display:none;">
+            Over the years, Huis Talje has completed many meaningful projects that continue to shape our home today. From renovated spaces to successful community initiatives, these projects reflect the dedication, teamwork, and compassion that keep Huis Talje growing stronger each year.
+        </p>
+        
+        <p class="puzzle-text" id="success-text" style="display:none;">
+            Every child at Huis Talje has a unique journey, and our success stories celebrate their growth, resilience, and achievements. From milestones in learning and literacy to personal triumphs, these stories show the lasting impact of care, support, and community involvement.
+        </p>
+        
+        <button class="btn btn-green">Learn More</button>
+    </section>
+
+    <!-- Heart of Huis Talje Section -->
+    <section class="heart-section">
+        <img src="images/homepage/FrameBorder.svg" alt="Frame border" class="heart-frame">
+        <div class="heart-content">
+            <div class="heart-illustration">
+                <img src="images/homepage/Hand and heart.svg" alt="Hand with heart" class="heart-image">
+            </div>
+            <div class="heart-text">
+                <h2>Inside The Heart Of Huis Talje</h2>
+                <h3>Beyond Walls: A World of Care Within.</h3>
+                <p>Every room, every laugh, every quiet moment reflects a deeper story of love, care, and unwavering dedication. It's here! From gentle hands and warm smiles to structured care and joyful play, Huis Talje breathes life into hope.</p>
+                <button class="btn btn-orange">Step Inside</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section newsletter">
+                <div class="footer-logo">
+                    <img src="images/homepage/Logo.svg" alt="Huis Talje Logo" class="footer-logo-img">
+                </div>
+                <p>Subscribe to our newsletter</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Email address" required>
+                    <button type="submit" aria-label="Subscribe">→</button>
+                </form>
+                <div class="social-icons">
+                    <a href="#" class="social-icon" aria-label="Instagram">
+                        <!-- Use Lucide icons or actual icon images -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="TikTok">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <ul>
+                    <li><a href="#our-story">Our Story</a></li>
+                    <li><a href="#what-we-do">What we do</a></li>
+                    <li><a href="#heart-section">Heart of Huis Talje</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="pages/get-involved.html">Get Involved</a></li>
+                    <li><a href="pages/projects.html">Our Projects</a></li>
+                    <li><a href="pages/inside-talje.html">Inside Huis Talje</a></li>
+                    <li><a href="pages/profile.html">Profile</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <img src="images/homepage/Footer Doodles.svg" alt="Decorative footer border" class="footer-border">
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>
