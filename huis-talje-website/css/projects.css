@@ -1,24 +1,38 @@
 /* ==========================================
    HUIS TALJE - PROJECTS PAGE STYLES
    ========================================== */
-
-/* ==========================================
-   HERO SECTION
-   ========================================== */
-.projects-hero {
-    padding: 0;
-    position: relative;
-    background-color: #FFF9E9;
-    min-height: 550px;
-    overflow: hidden;
+:root {
+    --hero-border-height: 80px;
 }
 
+.projects-hero {
+    position: relative;
+    min-height: 550px;
+    background-color: #FFF9E9;
+
+    /* Reserve space for border */
+    padding-bottom: var(--hero-border-height);
+    box-sizing: border-box;
+
+    /* Background SVG */
+    background-image: url("../images/projects/Header.svg");
+    background-repeat: no-repeat;
+    background-position: right center;   /* 🔥 edge locked */
+    background-size: auto 100%;           /* 🔥 no cropping */
+
+    /* Prevent overlap with border */
+    background-clip: content-box;
+    background-origin: content-box;
+
+    overflow: hidden;
+    margin-top: 0px !important;
+}
 .hero-content-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 60px 40px 80px;
+    padding: 50px 20px 30px;
     position: relative;
-    z-index: 10;
+    z-index: 3;
 }
 
 .hero-text-section {
@@ -33,39 +47,26 @@
 }
 
 .projects-hero-text {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.8;
     color: #e8642f;
-    margin-bottom: 0;
-}
-
-.hero-illustration {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-.header-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: right center;
+    max-width: 650px;
 }
 
 .hero-border {
-    width: 100%;
-    display: block;
-    position: relative;
-    margin: 0;
-    line-height: 0;
-}
+    position: absolute;
+    bottom: 0;
+    left: 0;
 
+    width: 100vw;
+    height: var(--hero-border-height);
+
+    max-width: none;
+    display: block;
+
+    z-index: 2;
+    pointer-events: none;
+}
 
 /* ==========================================
    SECTION TITLES
@@ -352,8 +353,7 @@
     }
 
     .hero-illustration {
-        width: 650px;
-        right: -80px;
+        height: 100%;
     }
 
     .section-title-center,
@@ -407,8 +407,7 @@
     }
 
     .hero-illustration {
-        width: 500px;
-        right: -100px;
+        height: 90%;
     }
 
     .section-title-center,
