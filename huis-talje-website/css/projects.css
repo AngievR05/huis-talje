@@ -9,7 +9,7 @@
     padding: 0;
     position: relative;
     background-color: #FFF9E9;
-    min-height: 1200px;
+    min-height: 550px;
     overflow: hidden;
 }
 
@@ -23,7 +23,6 @@
 
 .hero-text-section {
     max-width: 550px;
-    margin-bottom: 170px;
 }
 
 .projects-hero-title {
@@ -42,20 +41,21 @@
 
 .hero-illustration {
     position: absolute;
-    top: 0px;
+    right: 0;
+    top: 0;
     bottom: 0;
     width: 100%;
     z-index: 1;
     display: flex;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .header-image {
     width: 100%;
-    height: auto;
-    object-fit: contain;
-    margin-bottom: 5px;
-    align-items: center;
+    height: 100%;
+    object-fit: cover;
+    object-position: right center;
 }
 
 .hero-border {
@@ -65,6 +65,7 @@
     margin: 0;
     line-height: 0;
 }
+
 
 /* ==========================================
    SECTION TITLES
@@ -78,18 +79,19 @@
 }
 
 .section-title-left {
-    font-family: 'Over the Rainbow', cursive;
-    font-size: 36px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 27px;
     color: #e8642f;
     text-align: left;
     margin-bottom: 25px;
+    margin-left: 120px;
 }
 
 /* ==========================================
    CURRENT PROJECTS SECTION
    ========================================== */
 .current-projects {
-    padding: 75px 20px;
+    padding: 25px 20px;
     background-color: #FFF9E9;
     position: relative;
 }
@@ -153,16 +155,17 @@
    PAST PROJECTS SECTION
    ========================================== */
 .past-projects {
-    padding: 75px 20px;
+    padding: 50px 20px;
     background-color: #FFF9E9;
     position: relative;
+    margin-bottom: 50px;
 }
 
 /* ==========================================
    SUCCESS STORIES SECTION
    ========================================== */
 .success-stories {
-    padding: 100px 20px 0;
+    padding: 250px 20px 100px;
     background-color: #FFF9E9;
     position: relative;
     overflow: visible;
@@ -173,10 +176,8 @@
     position: absolute;
     width: 100%;
     height: auto;
-    max-height: none;
     right: 0;
-    top: -550px;
-    bottom: auto;
+    top: -90px;
     z-index: 1;
     pointer-events: none;
 }
@@ -187,40 +188,83 @@
     height: 900px;
     left: -20px;
     bottom: -90px;
-    align-items: center;
-    transform: none;
     z-index: 1;
     pointer-events: none;
     opacity: 1;
 }
 
-.success-stories > h2,
-.success-stories > p,
+.success-stories > .success-header,
 .success-stories > .stories-grid {
     position: relative;
     z-index: 10;
 }
 
-.success-intro {
-    max-width: 1000px;
+/* Header Section - H2 and P inline */
+.success-header {
+    max-width: 485px;
     margin: 0 auto 60px;
     padding: 0 40px;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.success-header h2 {
+    margin: 0;
+    flex-shrink: 0;
+    max-width: 650px;
+    margin-left: 40px;
+}
+
+.success-intro {
+    max-width: 450px;
     font-size: 15px;
     line-height: 1.8;
     color: #e8642f;
-    text-align: left;
+    margin-bottom: 25px;
+    margin-left: 120px;
 }
 
 /* ==========================================
    STORY CARDS GRID
    ========================================== */
 .stories-grid {
-    max-width: 1100px;
+    max-width: 1400px;
     margin: 0 auto 100px;
     padding: 0 40px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 650px 550px;
+    grid-template-rows: auto auto;
     gap: 80px 60px;
+    justify-content: center;
+}
+
+.stories-grid .story-card:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+    width: 650px;
+}
+
+.stories-grid .story-card:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+    width: 550px;
+}
+
+.stories-grid .story-card:nth-child(3) {
+    grid-column: 1;
+    grid-row: 2;
+    width: 500px;
+}
+
+.stories-grid .story-card:nth-child(4) {
+    grid-column: 2;
+    grid-row: 2;
+    width: 700px;
+    justify-self: end;
 }
 
 /* ==========================================
@@ -236,7 +280,6 @@
     min-height: 320px;
     display: flex;
     flex-direction: column;
-    width: 100%;
 }
 
 .story-card:hover {
@@ -254,7 +297,7 @@
 
 .story-card h3 {
     font-family: 'Roboto', sans-serif;
-    font-size: 19px;
+    font-size: 24px;
     font-weight: 700;
     color: #445F08;
     margin-bottom: 15px;
@@ -262,7 +305,7 @@
 }
 
 .story-card p {
-    font-size: 13px;
+    font-size: 16px;
     line-height: 1.7;
     color: #445F08;
     margin: 0;
