@@ -6,33 +6,28 @@
    HERO SECTION
    ========================================== */
 .projects-hero {
-    padding: 50px 0 0;
+    padding: 0;
     position: relative;
     background-color: #FFF9E9;
-    min-height: 600px;
+    min-height: 500px;
+    overflow: hidden;
 }
 
 .hero-content-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 80px 20px 100px;
-    display: flex;
-    align-items: flex-start;
-    gap: 60px;
-    flex-wrap: wrap;
+    padding: 60px 40px 80px;
     position: relative;
     z-index: 10;
 }
 
 .hero-text-section {
-    flex: 1;
-    min-width: 300px;
-    max-width: 500px;
+    max-width: 550px;
 }
 
 .projects-hero-title {
     font-family: 'Over the Rainbow', cursive;
-    font-size: 48px;
+    font-size: 56px;
     color: #e8642f;
     margin-bottom: 25px;
 }
@@ -46,28 +41,27 @@
 
 .hero-illustration {
     position: absolute;
-    right: 0;
+    right: -100px;
     top: 0;
-    width: 60%;
-    height: 100%;
+    bottom: 0;
+    width: 800px;
     z-index: 1;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .header-image {
     width: 100%;
-    max-width: 900px;
     height: auto;
+    max-height: 100%;
+    object-fit: contain;
 }
 
 .hero-border {
     width: 100%;
     display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    position: relative;
     margin: 0;
     line-height: 0;
 }
@@ -168,30 +162,33 @@
    SUCCESS STORIES SECTION
    ========================================== */
 .success-stories {
-    padding: 75px 20px 150px;
+    padding: 100px 20px 0;
     background-color: #FFF9E9;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 /* Background Elements */
 .longline-bg {
     position: absolute;
-    width: 926px;
+    width: 100%;
     height: auto;
-    right: -200px;
-    top: -200px;
+    max-height: none;
+    right: 0;
+    top: -550px;
+    bottom: auto;
     z-index: 1;
     pointer-events: none;
 }
 
 .doodles-bg {
     position: absolute;
-    width: 1013px;
-    height: auto;
-    left: 50%;
-    top: -100px;
-    transform: translateX(-50%);
+    width: 100%;
+    height: 900px;
+    left: -20px;
+    bottom: -90px;
+    align-items: center;
+    transform: none;
     z-index: 1;
     pointer-events: none;
     opacity: 1;
@@ -205,10 +202,10 @@
 }
 
 .success-intro {
-    max-width: 1200px;
-    margin: 0 auto 50px;
-    padding: 0 20px;
-    font-size: 16px;
+    max-width: 1000px;
+    margin: 0 auto 60px;
+    padding: 0 40px;
+    font-size: 15px;
     line-height: 1.8;
     color: #e8642f;
     text-align: left;
@@ -218,38 +215,38 @@
    STORY CARDS GRID
    ========================================== */
 .stories-grid {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    max-width: 1100px;
+    margin: 0 auto 100px;
+    padding: 0 40px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 60px 40px;
-    margin-bottom: 50px;
+    gap: 80px 60px;
 }
 
 /* ==========================================
    STORY CARD STYLING
    ========================================== */
 .story-card {
-    background: #C4D19B;
-    border-radius: 20px;
-    padding: 30px 25px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background: #E7F5C0;
+    border-radius: 25px;
+    padding: 35px 30px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
-    min-height: 280px;
+    min-height: 320px;
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .story-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
 }
 
 .story-icon {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     margin-bottom: 20px;
     position: absolute;
     z-index: 20;
@@ -257,40 +254,40 @@
 
 .story-card h3 {
     font-family: 'Roboto', sans-serif;
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 700;
     color: #445F08;
     margin-bottom: 15px;
-    margin-top: 50px;
+    margin-top: 45px;
 }
 
 .story-card p {
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.7;
     color: #445F08;
     margin: 0;
     flex: 1;
 }
 
-/* Position specific pins based on your reference image */
+/* Position specific pins based on reference image */
 .stories-grid .story-card:nth-child(1) .story-icon {
-    top: -25px;
-    left: 25px;
-}
-
-.stories-grid .story-card:nth-child(2) .story-icon {
-    top: -30px;
-    right: 40px;
-}
-
-.stories-grid .story-card:nth-child(3) .story-icon {
-    top: -25px;
+    top: -20px;
     left: 30px;
 }
 
+.stories-grid .story-card:nth-child(2) .story-icon {
+    top: -25px;
+    right: 80px;
+}
+
+.stories-grid .story-card:nth-child(3) .story-icon {
+    top: -20px;
+    left: 35px;
+}
+
 .stories-grid .story-card:nth-child(4) .story-icon {
-    top: -30px;
-    left: 25px;
+    top: -25px;
+    right: 50px;
 }
 
 /* ==========================================
@@ -300,24 +297,20 @@
 /* Tablet */
 @media (max-width: 1024px) {
     .projects-hero-title {
-        font-size: 36px;
+        font-size: 42px;
     }
 
     .projects-hero {
-        min-height: 500px;
+        min-height: 450px;
     }
 
     .hero-content-wrapper {
-        gap: 40px;
-        padding: 60px 20px 80px;
+        padding: 50px 30px 70px;
     }
 
     .hero-illustration {
-        width: 50%;
-    }
-
-    .header-image {
-        max-width: 700px;
+        width: 650px;
+        right: -80px;
     }
 
     .section-title-center,
@@ -336,34 +329,34 @@
 
     .stories-grid {
         grid-template-columns: 1fr;
-        gap: 60px;
+        gap: 70px;
+        max-width: 600px;
     }
 
     .longline-bg {
-        width: 700px;
-        right: -150px;
-        top: -150px;
+        width: auto;
+        height: calc(100% + 150px);
     }
 
     .doodles-bg {
-        width: 800px;
-        top: -50px;
+        width: 600px;
+        left: -50px;
+        bottom: -150px;
     }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
     .projects-hero {
-        padding: 40px 0 0;
-        min-height: 450px;
+        min-height: 400px;
     }
 
     .hero-content-wrapper {
-        padding: 50px 20px 60px;
+        padding: 40px 20px 60px;
     }
 
     .projects-hero-title {
-        font-size: 28px;
+        font-size: 32px;
     }
 
     .projects-hero-text {
@@ -371,18 +364,13 @@
     }
 
     .hero-illustration {
-        width: 100%;
-        position: relative;
-        margin-top: 30px;
-    }
-
-    .header-image {
-        max-width: 500px;
+        width: 500px;
+        right: -100px;
     }
 
     .section-title-center,
     .section-title-left {
-        font-size: 24px;
+        font-size: 26px;
         padding: 0 20px;
     }
 
@@ -392,7 +380,7 @@
     }
 
     .success-stories {
-        padding: 50px 15px 100px;
+        padding: 60px 15px 0;
     }
 
     .puzzle-card {
@@ -406,13 +394,14 @@
 
     .stories-grid {
         grid-template-columns: 1fr;
-        gap: 60px;
-        padding: 0 15px;
+        gap: 70px;
+        padding: 0 20px;
+        margin-bottom: 80px;
     }
 
     .story-card {
-        padding: 25px 20px;
-        min-height: 250px;
+        padding: 30px 25px;
+        min-height: 280px;
     }
 
     .story-card h3 {
@@ -424,14 +413,13 @@
     }
 
     .longline-bg {
-        width: 500px;
-        right: -100px;
-        top: -100px;
+        height: calc(100% + 100px);
     }
 
     .doodles-bg {
-        width: 600px;
-        top: 0px;
+        width: 500px;
+        left: -80px;
+        bottom: -120px;
     }
 }
 
@@ -442,8 +430,13 @@
         height: 214px;
     }
 
-    .header-image {
-        max-width: 350px;
+    .hero-illustration {
+        width: 400px;
+        right: -120px;
+    }
+
+    .projects-hero-title {
+        font-size: 28px;
     }
 
     .story-icon {
@@ -460,19 +453,24 @@
     }
 
     .doodles-bg {
-        width: 400px;
-        opacity: 0.5;
+        width: 350px;
+        opacity: 0.6;
+        bottom: -80px;
     }
 }
 
 /* Large Desktop */
 @media (min-width: 1400px) {
     .projects-hero-title {
-        font-size: 56px;
+        font-size: 64px;
     }
 
     .projects-hero {
-        min-height: 700px;
+        min-height: 600px;
+    }
+
+    .hero-illustration {
+        width: 900px;
     }
 
     .section-title-center,
@@ -486,17 +484,10 @@
     }
 
     .story-card {
-        padding: 35px 30px;
+        padding: 40px 35px;
     }
 
-    .longline-bg {
-        width: 926px;
-        right: -150px;
-        top: -200px;
-    }
-
-    .doodles-bg {
-        width: 1013px;
-        top: -100px;
+    .stories-grid {
+        max-width: 1200px;
     }
 }
