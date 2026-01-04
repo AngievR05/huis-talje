@@ -295,7 +295,7 @@
 @media (min-width: 1200px) {
     /* Hero Section */
     .hero {
-        padding: 60px 40px;
+        padding: 60px 0px;
     }
 
     .hero-text {

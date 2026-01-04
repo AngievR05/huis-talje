@@ -9,7 +9,7 @@
     padding: 0;
     position: relative;
     background-color: #FFF9E9;
-    min-height: 500px;
+    min-height: 1200px;
     overflow: hidden;
 }
 
@@ -23,6 +23,7 @@
 
 .hero-text-section {
     max-width: 550px;
+    margin-bottom: 170px;
 }
 
 .projects-hero-title {
@@ -41,21 +42,20 @@
 
 .hero-illustration {
     position: absolute;
-    right: -100px;
-    top: 0;
+    top: 0px;
     bottom: 0;
-    width: 800px;
+    width: 100%;
     z-index: 1;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .header-image {
     width: 100%;
     height: auto;
-    max-height: 100%;
     object-fit: contain;
+    margin-bottom: 5px;
+    align-items: center;
 }
 
 .hero-border {
