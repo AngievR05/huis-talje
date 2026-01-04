@@ -44,6 +44,7 @@
     font-size: 56px;
     color: #e8642f;
     margin-bottom: 25px;
+    background-color: #fff9e9;
 }
 
 .projects-hero-text {
@@ -51,6 +52,7 @@
     line-height: 1.8;
     color: #e8642f;
     max-width: 650px;
+    background-color: #fff9e9;
 }
 
 .hero-border {
