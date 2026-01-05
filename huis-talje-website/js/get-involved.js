@@ -1,95 +1,64 @@
 // Get Involved Page JavaScript
 
-// Inline Form functionality
+// ===== DOODLE CARD FORMS =====
 document.querySelectorAll('.open-form-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const card = btn.closest('.doodle-card');
-        const parentSection = card.closest('.content-wrapper, .donation-cards');
-        const sectionText = parentSection?.querySelector('.section-text');
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const card = this.closest('.doodle-card');
         
-        // Close all other cards first
+        // Close all other cards
         document.querySelectorAll('.doodle-card.expanded').forEach(otherCard => {
             if (otherCard !== card) {
                 otherCard.classList.remove('expanded');
             }
         });
         
-        // Reset all shifted text
-        document.querySelectorAll('.section-text.shifted-right, .section-text.shifted-left').forEach(text => {
-            text.classList.remove('shifted-right', 'shifted-left');
-        });
-        
-        // Expand this card
-        card.classList.add('expanded');
-        
-        // Shift the text if it exists and card has direction
-        if (sectionText) {
-            if (card.classList.contains('right-card')) {
-                sectionText.classList.add('shifted-right');
-            } else if (card.classList.contains('left-card')) {
-                sectionText.classList.add('shifted-left');
-            }
-        }
+        // Toggle this card
+        card.classList.toggle('expanded');
     });
 });
 
-// Close inline form buttons
-document.querySelectorAll('.close-inline-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const card = btn.closest('.doodle-card');
-        const parentSection = card.closest('.content-wrapper, .donation-cards');
-        const sectionText = parentSection?.querySelector('.section-text');
-        
+document.querySelectorAll('.close-form-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const card = this.closest('.doodle-card');
         card.classList.remove('expanded');
         
-        // Reset text position
-        if (sectionText) {
-            sectionText.classList.remove('shifted-right', 'shifted-left');
-        }
-        
         // Reset form
-        const form = card.querySelector('.inline-form');
-        if (form) {
-            form.reset();
-        }
+        const form = card.querySelector('.card-form');
+        if (form) form.reset();
     });
 });
 
-// Option buttons in hero section
+// Hero option buttons scroll to sections
 document.querySelectorAll('.option-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        let targetCard;
+    btn.addEventListener('click', function() {
+        let targetSelector;
         
-        if (btn.classList.contains('volunteer-btn')) {
-            targetCard = document.querySelector('[data-card="volunteer"]');
-        } else if (btn.classList.contains('partner-btn')) {
-            targetCard = document.querySelector('[data-card="partner"]');
-        } else if (btn.classList.contains('once-off-btn')) {
-            targetCard = document.querySelector('[data-card="once-off"]');
-        } else if (btn.classList.contains('monthly-btn')) {
-            targetCard = document.querySelector('[data-card="monthly"]');
+        if (this.classList.contains('volunteer-btn')) {
+            targetSelector = '[data-card="volunteer"]';
+        } else if (this.classList.contains('partner-btn')) {
+            targetSelector = '[data-card="partner"]';
+        } else if (this.classList.contains('once-off-btn')) {
+            targetSelector = '[data-card="once-off"]';
+        } else if (this.classList.contains('monthly-btn')) {
+            targetSelector = '[data-card="monthly"]';
         }
         
+        const targetCard = document.querySelector(targetSelector);
         if (targetCard) {
-            // Scroll to the card
             targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            // After scrolling, trigger the form open
             setTimeout(() => {
-                const openBtn = targetCard.querySelector('.open-form-btn');
-                if (openBtn) {
-                    openBtn.click();
-                }
+                const btn = targetCard.querySelector('.open-form-btn');
+                if (btn) btn.click();
             }, 800);
         }
     });
 });
 
-// Form submission handling with validation
-document.querySelectorAll('.inline-form').forEach(form => {
-    form.addEventListener('submit', (e) => {
+// Form submissions
+document.querySelectorAll('.card-form').forEach(form => {
+    form.addEventListener('submit', function(e) {
         e.preventDefault();
         
         // Basic validation
@@ -118,8 +87,8 @@ document.querySelectorAll('.inline-form').forEach(form => {
         // Phone validation
         const phoneInput = form.querySelector('input[type="tel"]');
         if (phoneInput && phoneInput.value) {
-            const phoneRegex = /^[0-9\s\-\+\(\)]+$/;
-            if (!phoneRegex.test(phoneInput.value) || phoneInput.value.length < 10) {
+            const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+            if (!phoneRegex.test(phoneInput.value) || phoneInput.value.replace(/\D/g, '').length < 10) {
                 isValid = false;
                 phoneInput.style.borderColor = '#BD002F';
             }
@@ -130,284 +99,257 @@ document.querySelectorAll('.inline-form').forEach(form => {
             return;
         }
         
-        // Get form data
-        const formData = new FormData(form);
+        // Success
+        alert('Thank you! We will be in touch soon.');
         
-        // Here you would typically send the data to a server
-        console.log('Form submitted:', Object.fromEntries(formData));
-        
-        // Show success message
-        alert('Thank you for your submission! We will be in touch soon.');
-        
-        // Close the form
+        // Close card
         const card = form.closest('.doodle-card');
-        const parentSection = card.closest('.content-wrapper, .donation-cards');
-        const sectionText = parentSection?.querySelector('.section-text');
-        
-        card.classList.remove('expanded');
-        if (sectionText) {
-            sectionText.classList.remove('shifted-right', 'shifted-left');
+        if (card) {
+            card.classList.remove('expanded');
         }
         
-        // Reset form
         form.reset();
     });
 });
 
-// Partner Logos Carousel with auto-scroll
-const partnerCarousel = document.querySelector('.partner-logos .carousel-track');
-const partnerPrev = document.querySelector('.partner-logos .prev-btn');
-const partnerNext = document.querySelector('.partner-logos .next-btn');
+// ===== PARTNERS CAROUSEL =====
+const partnersData = [
+    { img: 'Wool.png', name: 'Woolworths SA', desc: 'Grocery & hygiene donations' },
+    { img: 'Build.png', name: 'Builders Warehouse', desc: 'Supplies for upgrades & repairs' },
+    { img: 'Pick.png', name: 'Pick n Pay', desc: 'Food drives & volunteer support' },
+    { img: 'Tastic.png', name: 'Tastic', desc: 'Pantry staples for daily meals' },
+    { img: 'Mr.png', name: 'Mr Price', desc: 'Youth & mentorship support' },
+    { img: 'Clicks.png', name: 'Clicks', desc: 'Health & hygiene essentials' },
+    { img: 'Cape.png', name: 'Cape Union Mart', desc: 'Outdoor gear & warm clothing' }
+];
 
-let partnerScrollPosition = 0;
-let partnerAutoScrollInterval;
+let partnersIndex = 0;
 
-function scrollPartnerCarousel(direction) {
-    if (!partnerCarousel) return;
+function renderPartners() {
+    const container = document.querySelector('.partners-carousel');
+    if (!container) return;
     
-    const cardWidth = partnerCarousel.querySelector('.partner-card')?.offsetWidth || 220;
-    const gap = 20;
-    const scrollAmount = cardWidth + gap;
+    container.innerHTML = '';
     
-    if (direction === 'next') {
-        partnerScrollPosition += scrollAmount;
+    for (let i = 0; i < 5; i++) {
+        const idx = (partnersIndex + i) % partnersData.length;
+        const partner = partnersData[idx];
         
-        if (partnerScrollPosition >= partnerCarousel.scrollWidth - partnerCarousel.offsetWidth) {
-            partnerScrollPosition = 0;
-        }
-    } else {
-        partnerScrollPosition -= scrollAmount;
-        
-        if (partnerScrollPosition < 0) {
-            partnerScrollPosition = Math.max(0, partnerCarousel.scrollWidth - partnerCarousel.offsetWidth);
-        }
+        const card = document.createElement('div');
+        card.className = 'partner-logo-card';
+        card.innerHTML = `
+            <div class="partner-logo">
+                <img src="../images/get-involved/${partner.img}" alt="${partner.name}">
+            </div>
+            <h3>${partner.name}</h3>
+            <p>${partner.desc}</p>
+        `;
+        container.appendChild(card);
     }
-    
-    partnerCarousel.scrollTo({
-        left: partnerScrollPosition,
-        behavior: 'smooth'
+}
+
+const partnersNextBtn = document.querySelector('.partners-carousel-section .next-arrow');
+const partnersPrevBtn = document.querySelector('.partners-carousel-section .prev-arrow');
+
+if (partnersNextBtn) {
+    partnersNextBtn.addEventListener('click', () => {
+        partnersIndex = (partnersIndex + 1) % partnersData.length;
+        renderPartners();
     });
 }
 
-// Auto-scroll partner carousel
-function startPartnerAutoScroll() {
-    partnerAutoScrollInterval = setInterval(() => {
-        scrollPartnerCarousel('next');
-    }, 3000);
-}
-
-function stopPartnerAutoScroll() {
-    clearInterval(partnerAutoScrollInterval);
-}
-
-if (partnerCarousel) {
-    startPartnerAutoScroll();
-    
-    // Pause on hover
-    partnerCarousel.addEventListener('mouseenter', stopPartnerAutoScroll);
-    partnerCarousel.addEventListener('mouseleave', startPartnerAutoScroll);
-}
-
-if (partnerNext) {
-    partnerNext.addEventListener('click', () => {
-        stopPartnerAutoScroll();
-        scrollPartnerCarousel('next');
-        startPartnerAutoScroll();
+if (partnersPrevBtn) {
+    partnersPrevBtn.addEventListener('click', () => {
+        partnersIndex = (partnersIndex - 1 + partnersData.length) % partnersData.length;
+        renderPartners();
     });
 }
 
-if (partnerPrev) {
-    partnerPrev.addEventListener('click', () => {
-        stopPartnerAutoScroll();
-        scrollPartnerCarousel('prev');
-        startPartnerAutoScroll();
+// Auto-scroll partners
+let partnersInterval = setInterval(() => {
+    partnersIndex = (partnersIndex + 1) % partnersData.length;
+    renderPartners();
+}, 3000);
+
+const partnersCarousel = document.querySelector('.partners-carousel');
+if (partnersCarousel) {
+    partnersCarousel.addEventListener('mouseenter', () => clearInterval(partnersInterval));
+    partnersCarousel.addEventListener('mouseleave', () => {
+        partnersInterval = setInterval(() => {
+            partnersIndex = (partnersIndex + 1) % partnersData.length;
+            renderPartners();
+        }, 3000);
     });
 }
 
-// Wishlist Carousel with auto-scroll
-const wishlistCarousel = document.querySelector('.wishlist-track');
-const wishlistPrev = document.querySelector('.wishlist-prev');
-const wishlistNext = document.querySelector('.wishlist-next');
+renderPartners();
 
-let wishlistScrollPosition = 0;
-let wishlistAutoScrollInterval;
+// ===== WISHLIST CAROUSEL =====
+const wishlistData = [
+    { icon: 'Bedding.svg', name: 'Bedding', desc: 'Warm nights for our residents' },
+    { icon: 'Soap.svg', name: 'Hygiene Packs', desc: 'Everyday care essentials' },
+    { icon: 'Pencil.svg', name: 'Stationery', desc: 'Tools for learning & growth' },
+    { icon: 'Spray.svg', name: 'Cleaning Products', desc: 'Keep our spaces fresh' },
+    { icon: 'Shirt.svg', name: 'Clothing & Shoes', desc: 'Comfort for every season' },
+    { icon: 'Books.png', name: 'Books', desc: 'Stories that inspire minds' },
+    { icon: 'Teddy.svg', name: 'Toys & Games', desc: 'Joy through play' },
+    { icon: 'Pan.svg', name: 'Kitchen Equipment', desc: 'Gear for daily meals' },
+    { icon: 'Garden.svg', name: 'Garden Supplies', desc: 'Grow, learn & nurture' },
+    { icon: 'Fan.svg', name: 'Cooling Systems', desc: 'Stay cool in summer heat' }
+];
 
-function scrollWishlistCarousel(direction) {
-    if (!wishlistCarousel) return;
+let wishlistIndex = 0;
+
+function renderWishlist() {
+    const container = document.querySelector('.wishlist-carousel');
+    if (!container) return;
     
-    const cardWidth = wishlistCarousel.querySelector('.wishlist-card')?.offsetWidth || 220;
-    const gap = 20;
-    const scrollAmount = cardWidth + gap;
+    container.innerHTML = '';
     
-    if (direction === 'next') {
-        wishlistScrollPosition += scrollAmount;
+    for (let i = 0; i < 5; i++) {
+        const idx = (wishlistIndex + i) % wishlistData.length;
+        const item = wishlistData[idx];
         
-        if (wishlistScrollPosition >= wishlistCarousel.scrollWidth - wishlistCarousel.offsetWidth) {
-            wishlistScrollPosition = 0;
-        }
-    } else {
-        wishlistScrollPosition -= scrollAmount;
-        
-        if (wishlistScrollPosition < 0) {
-            wishlistScrollPosition = Math.max(0, wishlistCarousel.scrollWidth - wishlistCarousel.offsetWidth);
-        }
+        const card = document.createElement('div');
+        card.className = 'wishlist-item-card';
+        card.innerHTML = `
+            <img src="../images/get-involved/${item.icon}" alt="${item.name}" class="wishlist-icon">
+            <h3>${item.name}</h3>
+            <p>${item.desc}</p>
+        `;
+        container.appendChild(card);
     }
-    
-    wishlistCarousel.scrollTo({
-        left: wishlistScrollPosition,
-        behavior: 'smooth'
+}
+
+const wishlistNextBtn = document.querySelector('.wishlist-next');
+const wishlistPrevBtn = document.querySelector('.wishlist-prev');
+
+if (wishlistNextBtn) {
+    wishlistNextBtn.addEventListener('click', () => {
+        wishlistIndex = (wishlistIndex + 1) % wishlistData.length;
+        renderWishlist();
     });
 }
 
-// Auto-scroll wishlist carousel
-function startWishlistAutoScroll() {
-    wishlistAutoScrollInterval = setInterval(() => {
-        scrollWishlistCarousel('next');
-    }, 3500);
+if (wishlistPrevBtn) {
+    wishlistPrevBtn.addEventListener('click', () => {
+        wishlistIndex = (wishlistIndex - 1 + wishlistData.length) % wishlistData.length;
+        renderWishlist();
+    });
 }
 
-function stopWishlistAutoScroll() {
-    clearInterval(wishlistAutoScrollInterval);
-}
+// Auto-scroll wishlist
+let wishlistInterval = setInterval(() => {
+    wishlistIndex = (wishlistIndex + 1) % wishlistData.length;
+    renderWishlist();
+}, 3500);
 
+const wishlistCarousel = document.querySelector('.wishlist-carousel');
 if (wishlistCarousel) {
-    startWishlistAutoScroll();
-    
-    // Pause on hover
-    wishlistCarousel.addEventListener('mouseenter', stopWishlistAutoScroll);
-    wishlistCarousel.addEventListener('mouseleave', startWishlistAutoScroll);
-}
-
-if (wishlistNext) {
-    wishlistNext.addEventListener('click', () => {
-        stopWishlistAutoScroll();
-        scrollWishlistCarousel('next');
-        startWishlistAutoScroll();
+    wishlistCarousel.addEventListener('mouseenter', () => clearInterval(wishlistInterval));
+    wishlistCarousel.addEventListener('mouseleave', () => {
+        wishlistInterval = setInterval(() => {
+            wishlistIndex = (wishlistIndex + 1) % wishlistData.length;
+            renderWishlist();
+        }, 3500);
     });
 }
 
-if (wishlistPrev) {
-    wishlistPrev.addEventListener('click', () => {
-        stopWishlistAutoScroll();
-        scrollWishlistCarousel('prev');
-        startWishlistAutoScroll();
-    });
-}
+renderWishlist();
 
-// Budget Cards Expansion
-const budgetCards = document.querySelectorAll('.budget-card');
+// ===== BUDGET CARDS =====
+const budgetData = {
+    '2020': `
+        <p><strong>Subsidy Received:</strong> R24,530</p>
+        <p><strong>Stationery:</strong> R3,709</p>
+        <p><strong>Accounting Fees:</strong> R8,046</p>
+        <p><strong>Food:</strong> R6,324</p>
+        <p><strong>Telephone:</strong> R2,536</p>
+        <p><strong>Insurance:</strong> R3,681</p>
+    `,
+    '2021': `
+        <p><strong>Subsidy Received:</strong> R28,167</p>
+        <p><strong>Stationery:</strong> R3,532</p>
+        <p><strong>Accounting Fees:</strong> R7,663</p>
+        <p><strong>Food:</strong> R7,125</p>
+        <p><strong>Telephone:</strong> R2,414</p>
+        <p><strong>Insurance:</strong> R3,406</p>
+    `,
+    '2022': `
+        <p><strong>Subsidy Received:</strong> R24,330</p>
+        <p><strong>Stationery:</strong> R3,709</p>
+        <p><strong>Accounting Fees:</strong> R5,046</p>
+        <p><strong>Food:</strong> R6,998</p>
+        <p><strong>Telephone:</strong> R2,526</p>
+        <p><strong>Insurance:</strong> R3,261</p>
+    `,
+    '2023': `
+        <p><strong>Subsidy Received:</strong> R29,547</p>
+        <p><strong>Stationery:</strong> R3,895</p>
+        <p><strong>Accounting Fees:</strong> R8,149</p>
+        <p><strong>Food:</strong> R7,442</p>
+        <p><strong>Telephone:</strong> R2,663</p>
+        <p><strong>Insurance:</strong> R3,760</p>
+    `,
+    '2024': `
+        <p><strong>Subsidy Received:</strong> R26,819</p>
+        <p><strong>Stationery:</strong> R4,089</p>
+        <p><strong>Accounting Fees:</strong> R8,871</p>
+        <p><strong>Food:</strong> R7,709</p>
+        <p><strong>Telephone:</strong> R2,706</p>
+        <p><strong>Insurance:</strong> R4,398</p>
+    `,
+    '2025': `
+        <p><strong>Subsidy Received:</strong> R28,105</p>
+        <p><strong>Stationery:</strong> R4,292</p>
+        <p><strong>Accounting Fees:</strong> R9,314</p>
+        <p><strong>Food:</strong> R8,095</p>
+        <p><strong>Telephone:</strong> R2,840</p>
+        <p><strong>Insurance:</strong> R4,145</p>
+    `
+};
 
-budgetCards.forEach(card => {
-    card.addEventListener('click', (e) => {
-        // Don't expand if clicking the button
-        if (e.target.classList.contains('expand-btn')) {
-            return;
-        }
+document.querySelectorAll('.budget-card').forEach(card => {
+    card.addEventListener('click', function() {
+        const isActive = this.classList.contains('active');
         
-        const isExpanded = card.classList.contains('expanded');
+        // Close all
+        document.querySelectorAll('.budget-card').forEach(c => c.classList.remove('active'));
         
-        // Close all cards
-        budgetCards.forEach(c => c.classList.remove('expanded'));
-        
-        // Toggle clicked card
-        if (!isExpanded) {
-            card.classList.add('expanded');
+        // Toggle this one
+        if (!isActive) {
+            this.classList.add('active');
             
-            // Add budget details if not already present
-            if (!card.querySelector('.budget-details')) {
-                const year = card.dataset.year;
+            // Add details if not present
+            if (!this.querySelector('.budget-details')) {
+                const year = this.dataset.year;
                 const details = document.createElement('div');
                 details.className = 'budget-details';
-                details.innerHTML = getBudgetData(year);
-                card.appendChild(details);
+                details.innerHTML = budgetData[year] || '<p>No data available</p>';
+                this.appendChild(details);
             }
         }
     });
 });
 
-// Budget data function
-function getBudgetData(year) {
-    const budgetInfo = {
-        '2020': `
-            <p><strong>Subsidy Received:</strong> R24,530</p>
-            <p><strong>Stationery:</strong> R3,709</p>
-            <p><strong>Accounting Fees:</strong> R8,046</p>
-            <p><strong>Food:</strong> R6,324</p>
-            <p><strong>Telephone:</strong> R2,536</p>
-            <p><strong>Insurance:</strong> R3,681</p>
-            <p><strong>Miscellaneous:</strong> R1,264</p>
-        `,
-        '2021': `
-            <p><strong>Subsidy Received:</strong> R28,167</p>
-            <p><strong>Stationery:</strong> R3,532</p>
-            <p><strong>Accounting Fees:</strong> R7,663</p>
-            <p><strong>Food:</strong> R7,125</p>
-            <p><strong>Telephone:</strong> R2,414</p>
-            <p><strong>Insurance:</strong> R3,406</p>
-            <p><strong>Miscellaneous:</strong> R1,027</p>
-        `,
-        '2022': `
-            <p><strong>Subsidy Received:</strong> R24,330</p>
-            <p><strong>Stationery:</strong> R3,709</p>
-            <p><strong>Accounting Fees:</strong> R5,046</p>
-            <p><strong>Food:</strong> R6,998</p>
-            <p><strong>Telephone:</strong> R2,526</p>
-            <p><strong>Insurance:</strong> R3,261</p>
-            <p><strong>Miscellaneous:</strong> R2,790</p>
-        `,
-        '2023': `
-            <p><strong>Subsidy Received:</strong> R29,547</p>
-            <p><strong>Stationery:</strong> R3,895</p>
-            <p><strong>Accounting Fees:</strong> R8,149</p>
-            <p><strong>Food:</strong> R7,442</p>
-            <p><strong>Telephone:</strong> R2,663</p>
-            <p><strong>Insurance:</strong> R3,760</p>
-            <p><strong>Miscellaneous:</strong> R3,638</p>
-        `,
-        '2024': `
-            <p><strong>Subsidy Received:</strong> R26,819</p>
-            <p><strong>Stationery:</strong> R4,089</p>
-            <p><strong>Accounting Fees:</strong> R8,871</p>
-            <p><strong>Food:</strong> R7,709</p>
-            <p><strong>Telephone:</strong> R2,706</p>
-            <p><strong>Insurance:</strong> R4,398</p>
-            <p><strong>Miscellaneous:</strong> R2,046</p>
-        `,
-        '2025': `
-            <p><strong>Subsidy Received:</strong> R28,105</p>
-            <p><strong>Stationery:</strong> R4,292</p>
-            <p><strong>Accounting Fees:</strong> R9,314</p>
-            <p><strong>Food:</strong> R8,095</p>
-            <p><strong>Telephone:</strong> R2,840</p>
-            <p><strong>Insurance:</strong> R4,145</p>
-            <p><strong>Miscellaneous:</strong> R1,419</p>
-        `
-    };
-    
-    return budgetInfo[year] || '<p>Budget information coming soon.</p>';
-}
-
-// Back to Top Button
+// ===== BACK TO TOP =====
 const backToTop = document.querySelector('.back-to-top');
 
 if (backToTop) {
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
+        if (window.scrollY > 400) {
             backToTop.classList.add('show');
         } else {
             backToTop.classList.remove('show');
         }
     });
-
+    
     backToTop.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
 
-// Header scroll effect
+// ===== HEADER SCROLL =====
 const header = document.querySelector('header');
 
 if (header) {
@@ -420,7 +362,7 @@ if (header) {
     });
 }
 
-// Newsletter form
+// ===== NEWSLETTER =====
 const newsletterForm = document.querySelector('.newsletter-form');
 
 if (newsletterForm) {
@@ -429,17 +371,13 @@ if (newsletterForm) {
         const emailInput = newsletterForm.querySelector('input[type="email"]');
         const email = emailInput.value;
         
-        // Validate email
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             alert('Please enter a valid email address.');
             return;
         }
         
-        // Here you would typically send to a server
-        console.log('Newsletter subscription:', email);
-        
-        alert('Thank you for subscribing to our newsletter!');
+        alert('Thank you for subscribing!');
         newsletterForm.reset();
     });
 }
