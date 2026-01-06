@@ -1,67 +1,40 @@
-// Get Involved Page JavaScript
+// Get Involved Page - Complete JavaScript
 
-// ===== DOODLE CARD FORMS =====
-document.querySelectorAll('.open-form-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const card = this.closest('.doodle-card');
+// ===== INVOLVEMENT CARDS (Volunteer/Partner/Donations) =====
+document.querySelectorAll('.card-trigger-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const card = this.closest('.involvement-card');
         
         // Close all other cards
-        document.querySelectorAll('.doodle-card.expanded').forEach(otherCard => {
-            if (otherCard !== card) {
+        document.querySelectorAll('.involvement-card.expanded').forEach(otherCard => {
+            if (otherCard !== card && !otherCard.classList.contains('submitted')) {
                 otherCard.classList.remove('expanded');
             }
         });
         
-        // Toggle this card
-        card.classList.toggle('expanded');
+        // Expand this card
+        card.classList.add('expanded');
     });
 });
 
-document.querySelectorAll('.close-form-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const card = this.closest('.doodle-card');
+document.querySelectorAll('.card-close-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const card = this.closest('.involvement-card');
         card.classList.remove('expanded');
+        card.classList.remove('submitted');
         
         // Reset form
-        const form = card.querySelector('.card-form');
+        const form = card.querySelector('.involvement-form');
         if (form) form.reset();
     });
 });
 
-// Hero option buttons scroll to sections
-document.querySelectorAll('.option-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        let targetSelector;
-        
-        if (this.classList.contains('volunteer-btn')) {
-            targetSelector = '[data-card="volunteer"]';
-        } else if (this.classList.contains('partner-btn')) {
-            targetSelector = '[data-card="partner"]';
-        } else if (this.classList.contains('once-off-btn')) {
-            targetSelector = '[data-card="once-off"]';
-        } else if (this.classList.contains('monthly-btn')) {
-            targetSelector = '[data-card="monthly"]';
-        }
-        
-        const targetCard = document.querySelector(targetSelector);
-        if (targetCard) {
-            targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            setTimeout(() => {
-                const btn = targetCard.querySelector('.open-form-btn');
-                if (btn) btn.click();
-            }, 800);
-        }
-    });
-});
-
 // Form submissions
-document.querySelectorAll('.card-form').forEach(form => {
+document.querySelectorAll('.involvement-form').forEach(form => {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Basic validation
+        // Validation
         const requiredInputs = form.querySelectorAll('[required]');
         let isValid = true;
         
@@ -87,8 +60,8 @@ document.querySelectorAll('.card-form').forEach(form => {
         // Phone validation
         const phoneInput = form.querySelector('input[type="tel"]');
         if (phoneInput && phoneInput.value) {
-            const phoneRegex = /^[\d\s\-\+\(\)]+$/;
-            if (!phoneRegex.test(phoneInput.value) || phoneInput.value.replace(/\D/g, '').length < 10) {
+            const cleanPhone = phoneInput.value.replace(/\D/g, '');
+            if (cleanPhone.length < 10) {
                 isValid = false;
                 phoneInput.style.borderColor = '#BD002F';
             }
@@ -99,17 +72,36 @@ document.querySelectorAll('.card-form').forEach(form => {
             return;
         }
         
-        // Success
-        alert('Thank you! We will be in touch soon.');
+        // Show success message
+        const card = form.closest('.involvement-card');
+        card.classList.add('submitted');
         
-        // Close card
-        const card = form.closest('.doodle-card');
-        if (card) {
-            card.classList.remove('expanded');
-        }
-        
-        form.reset();
+        // Reset form after delay
+        setTimeout(() => {
+            form.reset();
+        }, 100);
     });
+});
+
+// Hero scroll buttons
+document.querySelector('.volunteer-scroll-btn')?.addEventListener('click', () => {
+    document.getElementById('volunteer-section')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => document.getElementById('volunteer-card')?.querySelector('.card-trigger-btn')?.click(), 800);
+});
+
+document.querySelector('.partner-scroll-btn')?.addEventListener('click', () => {
+    document.getElementById('partner-section')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => document.getElementById('partner-card')?.querySelector('.card-trigger-btn')?.click(), 800);
+});
+
+document.querySelector('.once-off-scroll-btn')?.addEventListener('click', () => {
+    document.querySelector('.donation-section')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => document.getElementById('once-off-card')?.querySelector('.card-trigger-btn')?.click(), 800);
+});
+
+document.querySelector('.monthly-scroll-btn')?.addEventListener('click', () => {
+    document.querySelector('.donation-section')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => document.getElementById('monthly-card')?.querySelector('.card-trigger-btn')?.click(), 800);
 });
 
 // ===== PARTNERS CAROUSEL =====
@@ -124,65 +116,116 @@ const partnersData = [
 ];
 
 let partnersIndex = 0;
+let partnersAutoScroll = null;
+let partnersManualControl = false;
 
 function renderPartners() {
-    const container = document.querySelector('.partners-carousel');
-    if (!container) return;
+    const track = document.querySelector('.partners-carousel-track');
+    if (!track) return;
     
-    container.innerHTML = '';
+    track.innerHTML = '';
     
     for (let i = 0; i < 5; i++) {
         const idx = (partnersIndex + i) % partnersData.length;
         const partner = partnersData[idx];
         
-        const card = document.createElement('div');
-        card.className = 'partner-logo-card';
-        card.innerHTML = `
-            <div class="partner-logo">
+        const item = document.createElement('div');
+        item.className = 'partner-item';
+        item.innerHTML = `
+            <div class="partner-logo-circle">
                 <img src="../images/get-involved/${partner.img}" alt="${partner.name}">
             </div>
             <h3>${partner.name}</h3>
             <p>${partner.desc}</p>
         `;
-        container.appendChild(card);
+        track.appendChild(item);
     }
 }
 
-const partnersNextBtn = document.querySelector('.partners-carousel-section .next-arrow');
-const partnersPrevBtn = document.querySelector('.partners-carousel-section .prev-arrow');
-
-if (partnersNextBtn) {
-    partnersNextBtn.addEventListener('click', () => {
+function startPartnersAutoScroll() {
+    if (partnersManualControl) return;
+    partnersAutoScroll = setInterval(() => {
         partnersIndex = (partnersIndex + 1) % partnersData.length;
         renderPartners();
-    });
+    }, 3000);
 }
 
-if (partnersPrevBtn) {
-    partnersPrevBtn.addEventListener('click', () => {
-        partnersIndex = (partnersIndex - 1 + partnersData.length) % partnersData.length;
-        renderPartners();
-    });
+function stopPartnersAutoScroll() {
+    if (partnersAutoScroll) {
+        clearInterval(partnersAutoScroll);
+        partnersAutoScroll = null;
+    }
 }
 
-// Auto-scroll partners
-let partnersInterval = setInterval(() => {
+document.querySelector('.next-partners')?.addEventListener('click', () => {
+    partnersManualControl = true;
+    stopPartnersAutoScroll();
     partnersIndex = (partnersIndex + 1) % partnersData.length;
     renderPartners();
-}, 3000);
+    setTimeout(() => {
+        partnersManualControl = false;
+        startPartnersAutoScroll();
+    }, 5000);
+});
 
-const partnersCarousel = document.querySelector('.partners-carousel');
-if (partnersCarousel) {
-    partnersCarousel.addEventListener('mouseenter', () => clearInterval(partnersInterval));
-    partnersCarousel.addEventListener('mouseleave', () => {
-        partnersInterval = setInterval(() => {
-            partnersIndex = (partnersIndex + 1) % partnersData.length;
-            renderPartners();
-        }, 3000);
+document.querySelector('.prev-partners')?.addEventListener('click', () => {
+    partnersManualControl = true;
+    stopPartnersAutoScroll();
+    partnersIndex = (partnersIndex - 1 + partnersData.length) % partnersData.length;
+    renderPartners();
+    setTimeout(() => {
+        partnersManualControl = false;
+        startPartnersAutoScroll();
+    }, 5000);
+});
+
+renderPartners();
+startPartnersAutoScroll();
+
+// ===== BUDGET ACCORDION =====
+const budgetYears = [
+    { year: '2020', data: '<p><strong>Subsidy Received:</strong> R24,530</p><p><strong>Stationery:</strong> R3,709</p><p><strong>Accounting Fees:</strong> R8,046</p><p><strong>Food:</strong> R6,324</p><p><strong>Telephone:</strong> R2,536</p><p><strong>Insurance:</strong> R3,681</p>' },
+    { year: '2021', data: '<p><strong>Subsidy Received:</strong> R28,167</p><p><strong>Stationery:</strong> R3,532</p><p><strong>Accounting Fees:</strong> R7,663</p><p><strong>Food:</strong> R7,125</p><p><strong>Telephone:</strong> R2,414</p><p><strong>Insurance:</strong> R3,406</p>' },
+    { year: '2022', data: '<p><strong>Subsidy Received:</strong> R24,330</p><p><strong>Stationery:</strong> R3,709</p><p><strong>Accounting Fees:</strong> R5,046</p><p><strong>Food:</strong> R6,998</p><p><strong>Telephone:</strong> R2,526</p><p><strong>Insurance:</strong> R3,261</p>' },
+    { year: '2023', data: '<p><strong>Subsidy Received:</strong> R29,547</p><p><strong>Stationery:</strong> R3,895</p><p><strong>Accounting Fees:</strong> R8,149</p><p><strong>Food:</strong> R7,442</p><p><strong>Telephone:</strong> R2,663</p><p><strong>Insurance:</strong> R3,760</p>' },
+    { year: '2024', data: '<p><strong>Subsidy Received:</strong> R26,819</p><p><strong>Stationery:</strong> R4,089</p><p><strong>Accounting Fees:</strong> R8,871</p><p><strong>Food:</strong> R7,709</p><p><strong>Telephone:</strong> R2,706</p><p><strong>Insurance:</strong> R4,398</p>' },
+    { year: '2025', data: '<p><strong>Subsidy Received:</strong> R28,105</p><p><strong>Stationery:</strong> R4,292</p><p><strong>Accounting Fees:</strong> R9,314</p><p><strong>Food:</strong> R8,095</p><p><strong>Telephone:</strong> R2,840</p><p><strong>Insurance:</strong> R4,145</p>' }
+];
+
+function renderBudget() {
+    const container = document.querySelector('.budget-accordion-container');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    budgetYears.forEach(item => {
+        const accordion = document.createElement('div');
+        accordion.className = 'budget-accordion-item';
+        accordion.innerHTML = `
+            <div class="budget-year-label">${item.year}</div>
+            <div class="budget-expand-arrow">→</div>
+            <div class="budget-breakdown">${item.data}</div>
+        `;
+        
+        accordion.addEventListener('click', function() {
+            const isActive = this.classList.contains('active');
+            
+            // Close all
+            document.querySelectorAll('.budget-accordion-item').forEach(acc => {
+                acc.classList.remove('active');
+            });
+            
+            // Toggle this one
+            if (!isActive) {
+                this.classList.add('active');
+            }
+        });
+        
+        container.appendChild(accordion);
     });
 }
 
-renderPartners();
+renderBudget();
 
 // ===== WISHLIST CAROUSEL =====
 const wishlistData = [
@@ -199,142 +242,72 @@ const wishlistData = [
 ];
 
 let wishlistIndex = 0;
+let wishlistAutoScroll = null;
+let wishlistManualControl = false;
 
 function renderWishlist() {
-    const container = document.querySelector('.wishlist-carousel');
-    if (!container) return;
+    const track = document.querySelector('.wishlist-carousel-track');
+    if (!track) return;
     
-    container.innerHTML = '';
+    track.innerHTML = '';
     
     for (let i = 0; i < 5; i++) {
         const idx = (wishlistIndex + i) % wishlistData.length;
         const item = wishlistData[idx];
         
         const card = document.createElement('div');
-        card.className = 'wishlist-item-card';
+        card.className = 'wishlist-item';
         card.innerHTML = `
-            <img src="../images/get-involved/${item.icon}" alt="${item.name}" class="wishlist-icon">
+            <img src="../images/get-involved/${item.icon}" alt="${item.name}" class="wishlist-item-icon">
             <h3>${item.name}</h3>
             <p>${item.desc}</p>
         `;
-        container.appendChild(card);
+        track.appendChild(card);
     }
 }
 
-const wishlistNextBtn = document.querySelector('.wishlist-next');
-const wishlistPrevBtn = document.querySelector('.wishlist-prev');
-
-if (wishlistNextBtn) {
-    wishlistNextBtn.addEventListener('click', () => {
+function startWishlistAutoScroll() {
+    if (wishlistManualControl) return;
+    wishlistAutoScroll = setInterval(() => {
         wishlistIndex = (wishlistIndex + 1) % wishlistData.length;
         renderWishlist();
-    });
+    }, 3500);
 }
 
-if (wishlistPrevBtn) {
-    wishlistPrevBtn.addEventListener('click', () => {
-        wishlistIndex = (wishlistIndex - 1 + wishlistData.length) % wishlistData.length;
-        renderWishlist();
-    });
+function stopWishlistAutoScroll() {
+    if (wishlistAutoScroll) {
+        clearInterval(wishlistAutoScroll);
+        wishlistAutoScroll = null;
+    }
 }
 
-// Auto-scroll wishlist
-let wishlistInterval = setInterval(() => {
+document.querySelector('.next-wishlist')?.addEventListener('click', () => {
+    wishlistManualControl = true;
+    stopWishlistAutoScroll();
     wishlistIndex = (wishlistIndex + 1) % wishlistData.length;
     renderWishlist();
-}, 3500);
+    setTimeout(() => {
+        wishlistManualControl = false;
+        startWishlistAutoScroll();
+    }, 5000);
+});
 
-const wishlistCarousel = document.querySelector('.wishlist-carousel');
-if (wishlistCarousel) {
-    wishlistCarousel.addEventListener('mouseenter', () => clearInterval(wishlistInterval));
-    wishlistCarousel.addEventListener('mouseleave', () => {
-        wishlistInterval = setInterval(() => {
-            wishlistIndex = (wishlistIndex + 1) % wishlistData.length;
-            renderWishlist();
-        }, 3500);
-    });
-}
+document.querySelector('.prev-wishlist')?.addEventListener('click', () => {
+    wishlistManualControl = true;
+    stopWishlistAutoScroll();
+    wishlistIndex = (wishlistIndex - 1 + wishlistData.length) % wishlistData.length;
+    renderWishlist();
+    setTimeout(() => {
+        wishlistManualControl = false;
+        startWishlistAutoScroll();
+    }, 5000);
+});
 
 renderWishlist();
-
-// ===== BUDGET CARDS =====
-const budgetData = {
-    '2020': `
-        <p><strong>Subsidy Received:</strong> R24,530</p>
-        <p><strong>Stationery:</strong> R3,709</p>
-        <p><strong>Accounting Fees:</strong> R8,046</p>
-        <p><strong>Food:</strong> R6,324</p>
-        <p><strong>Telephone:</strong> R2,536</p>
-        <p><strong>Insurance:</strong> R3,681</p>
-    `,
-    '2021': `
-        <p><strong>Subsidy Received:</strong> R28,167</p>
-        <p><strong>Stationery:</strong> R3,532</p>
-        <p><strong>Accounting Fees:</strong> R7,663</p>
-        <p><strong>Food:</strong> R7,125</p>
-        <p><strong>Telephone:</strong> R2,414</p>
-        <p><strong>Insurance:</strong> R3,406</p>
-    `,
-    '2022': `
-        <p><strong>Subsidy Received:</strong> R24,330</p>
-        <p><strong>Stationery:</strong> R3,709</p>
-        <p><strong>Accounting Fees:</strong> R5,046</p>
-        <p><strong>Food:</strong> R6,998</p>
-        <p><strong>Telephone:</strong> R2,526</p>
-        <p><strong>Insurance:</strong> R3,261</p>
-    `,
-    '2023': `
-        <p><strong>Subsidy Received:</strong> R29,547</p>
-        <p><strong>Stationery:</strong> R3,895</p>
-        <p><strong>Accounting Fees:</strong> R8,149</p>
-        <p><strong>Food:</strong> R7,442</p>
-        <p><strong>Telephone:</strong> R2,663</p>
-        <p><strong>Insurance:</strong> R3,760</p>
-    `,
-    '2024': `
-        <p><strong>Subsidy Received:</strong> R26,819</p>
-        <p><strong>Stationery:</strong> R4,089</p>
-        <p><strong>Accounting Fees:</strong> R8,871</p>
-        <p><strong>Food:</strong> R7,709</p>
-        <p><strong>Telephone:</strong> R2,706</p>
-        <p><strong>Insurance:</strong> R4,398</p>
-    `,
-    '2025': `
-        <p><strong>Subsidy Received:</strong> R28,105</p>
-        <p><strong>Stationery:</strong> R4,292</p>
-        <p><strong>Accounting Fees:</strong> R9,314</p>
-        <p><strong>Food:</strong> R8,095</p>
-        <p><strong>Telephone:</strong> R2,840</p>
-        <p><strong>Insurance:</strong> R4,145</p>
-    `
-};
-
-document.querySelectorAll('.budget-card').forEach(card => {
-    card.addEventListener('click', function() {
-        const isActive = this.classList.contains('active');
-        
-        // Close all
-        document.querySelectorAll('.budget-card').forEach(c => c.classList.remove('active'));
-        
-        // Toggle this one
-        if (!isActive) {
-            this.classList.add('active');
-            
-            // Add details if not present
-            if (!this.querySelector('.budget-details')) {
-                const year = this.dataset.year;
-                const details = document.createElement('div');
-                details.className = 'budget-details';
-                details.innerHTML = budgetData[year] || '<p>No data available</p>';
-                this.appendChild(details);
-            }
-        }
-    });
-});
+startWishlistAutoScroll();
 
 // ===== BACK TO TOP =====
 const backToTop = document.querySelector('.back-to-top');
-
 if (backToTop) {
     window.addEventListener('scroll', () => {
         if (window.scrollY > 400) {
@@ -351,7 +324,6 @@ if (backToTop) {
 
 // ===== HEADER SCROLL =====
 const header = document.querySelector('header');
-
 if (header) {
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -364,7 +336,6 @@ if (header) {
 
 // ===== NEWSLETTER =====
 const newsletterForm = document.querySelector('.newsletter-form');
-
 if (newsletterForm) {
     newsletterForm.addEventListener('submit', (e) => {
         e.preventDefault();

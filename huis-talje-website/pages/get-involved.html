@@ -9,10 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Over+the+Rainbow&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../css/get-involved.css">
-    <link rel="stylesheet" href="../css/buttons.css">
-    <link rel="stylesheet" href="../css/responsive.css">
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/get-involved.css">
+    <link rel="stylesheet" href="../css/responsive.css">
 </head>
 <body>
     <!-- Header -->
@@ -26,7 +26,7 @@
                 <ul>
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="projects.html">Projects</a></li>
-                    <li><a href="get-involved.html">Get Involved</a></li>
+                    <li><a href="get-involved.html" class="active">Get Involved</a></li>
                     <li><a href="inside-talje.html">Inside Huis Talje</a></li>
                     <li><a href="profile.html">Profile</a></li>
                     <li class="dropdown">
@@ -73,10 +73,10 @@
         <div class="involvement-options">
             <p>Take the initiative to uplift communities through Huis Talje</p>
             <div class="option-buttons">
-                <button class="option-btn volunteer-btn">Be a Volunteer</button>
-                <button class="option-btn partner-btn">Partner Up</button>
-                <button class="option-btn once-off-btn">One-Off Donations</button>
-                <button class="option-btn monthly-btn">Recurring Donations</button>
+                <button class="btn btn-green volunteer-scroll-btn">Be a Volunteer</button>
+                <button class="btn btn-green partner-scroll-btn">Partner Up</button>
+                <button class="btn btn-green once-off-scroll-btn">One-Off Donations</button>
+                <button class="btn btn-green monthly-scroll-btn">Recurring Donations</button>
             </div>
         </div>
 
@@ -84,148 +84,116 @@
             <img src="../images/get-involved/BGPeople.svg" alt="People illustrations" class="people-illustration">
         </div>
 
-        <img src="../images/homepage/HeaderBorder.svg" alt="" class="section-border">
+        <img src="../images/homepage/HeaderBorder.svg" alt="" class="section-divider">
     </section>
 
     <!-- Volunteer Section -->
-    <section class="volunteer-section">
-        <div class="content-wrapper">
-            <div class="doodle-card right-card" data-card="volunteer">
-                <img src="../images/get-involved/DOODLES.svg" alt="Doodles" class="doodle-bg">
-                <button class="open-form-btn">Sign Up as a Volunteer</button>
-                
-                <form class="inline-form">
-                    <button type="button" class="close-inline-btn">✕</button>
-                    <h3>Volunteer</h3>
-                    <input type="text" placeholder="Full name" required>
-                    <input type="email" placeholder="Email address" required>
-                    <input type="tel" placeholder="Phone number" required>
-                    <select required>
-                        <option value="">Type of Partnership</option>
-                        <option value="caregiving">Caregiving</option>
-                        <option value="event-planning">Event Planning</option>
-                        <option value="garden-maintenance">Garden & Maintenance</option>
-                        <option value="skill-sharing">Skill Sharing</option>
-                        <option value="corporate-volunteer">Corporate Volunteer Day</option>
-                        <option value="other">Other</option>
-                    </select>
-                    <div class="checkbox-group">
-                        <label>
-                            <input type="checkbox" name="availability" value="weekly">
-                            Weekly
-                        </label>
-                        <label>
-                            <input type="checkbox" name="availability" value="monthly">
-                            Monthly
-                        </label>
-                        <label>
-                            <input type="checkbox" name="availability" value="special-events">
-                            Special Events
-                        </label>
-                        <label>
-                            <input type="checkbox" name="availability" value="once-off">
-                            Once-off
-                        </label>
+    <section class="volunteer-section" id="volunteer-section">
+        <div class="involvement-container">
+            <div class="involvement-card-wrapper left-position">
+                <div class="involvement-card" id="volunteer-card">
+                    <img src="../images/get-involved/DOODLES.svg" alt="Doodles" class="card-pattern">
+                    <button class="btn btn-orange card-trigger-btn">Sign Up as a Volunteer</button>
+                    
+                    <div class="card-expanded-content">
+                        <button type="button" class="card-close-btn">✕</button>
+                        <form class="involvement-form">
+                            <h3>Volunteer</h3>
+                            <input type="text" placeholder="Full name" required>
+                            <input type="email" placeholder="Email address" required>
+                            <input type="tel" placeholder="Phone number" required>
+                            <select required>
+                                <option value="">Type of Partnership</option>
+                                <option value="caregiving">Caregiving</option>
+                                <option value="event-planning">Event Planning</option>
+                                <option value="garden-maintenance">Garden & Maintenance</option>
+                                <option value="skill-sharing">Skill Sharing</option>
+                                <option value="corporate-volunteer">Corporate Volunteer Day</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div class="checkbox-options">
+                                <label><input type="checkbox" value="weekly"><span>Weekly</span></label>
+                                <label><input type="checkbox" value="monthly"><span>Monthly</span></label>
+                                <label><input type="checkbox" value="special"><span>Special Events</span></label>
+                                <label><input type="checkbox" value="once"><span>Once-off</span></label>
+                            </div>
+                            <p class="form-disclaimer">We welcome permanently or temporarily volunteers at Huis Talje. Whether you want to volunteer for a once, contribute with specific tasks, or join us regularly, we have opportunities waiting for you.</p>
+                            <button type="submit" class="btn btn-orange">Submit</button>
+                        </form>
+                        
+                        <div class="form-success-message">
+                            <img src="../images/get-involved//HeartHand.svg" alt="Thank you" class="success-icon">
+                            <p>Thank you for your interest in partnering with Huis Talje. We're so thankful to partners who share our vision. Let's work together to create lasting change. Can you share more?</p>
+                        </div>
                     </div>
-                    <p class="consent-text">We welcome permanently or temporarily volunteers at Huis Talje. Whether you want to volunteer for a once, contribute with specific tasks, or join us regularly, we have opportunities waiting for you.</p>
-                    <button type="submit" class="submit-btn">Submit</button>
-                </form>
+                </div>
             </div>
             
-            <div class="section-text">
+            <div class="involvement-text">
                 <h2>Volunteer With Us</h2>
                 <p>Your time is one of the most valuable things you can offer. When you volunteer at Huis Talje, you become part of a compassionate community that brings light to the lives of others.</p>
                 
                 <h3>Volunteer Opportunities:</h3>
-                <ul>
-                    <li><strong>Cook & Oversee Care Assistants:</strong> Help with feeding, medical activities, mobility support and companionship.</li>
-                    <li><strong>Therapy Support Team:</strong> Assist with occupational therapy and physiotherapy sessions, encouraging recovery and skill-building.</li>
-                    <li><strong>Gardening & Maintenance:</strong> Maintain the outdoor areas, beautifying the space for everyone.</li>
-                    <li><strong>Events & Fundraising Helpers:</strong> Support our fundraising sessions such as drives or music festivals, seasonal parties, and charity dinners (usually once per quarter, no weekly commitment).</li>
-                </ul>
+                <p><strong>Cook & Oversee Care Assistants:</strong> Help with feeding, medical activities, mobility support and companionship.</p>
+                <p><strong>Therapy Support Team:</strong> Assist with occupational therapy and physiotherapy sessions, encouraging recovery and skill-building.</p>
+                <p><strong>Gardening & Maintenance:</strong> Maintain the outdoor areas, beautifying the space for everyone.</p>
+                <p><strong>Events & Fundraising Helpers:</strong> Support our fundraising sessions such as drives or music festivals, seasonal parties, and charity dinners (usually once per quarter, no weekly commitment).</p>
             </div>
         </div>
     </section>
 
     <!-- Partner Section -->
-    <section class="partner-section">
-        <div class="content-wrapper reverse">
-            <div class="section-text">
+    <section class="partner-section" id="partner-section">
+        <div class="involvement-container reverse">
+            <div class="involvement-text">
                 <h2>Partner With Us</h2>
                 <p>We believe that partnerships amplify impact. When you partner with Huis Talje, you join us on our mission to provide a safe home and life-giving services to vulnerable children.</p>
                 
                 <h3>Types of Partnerships:</h3>
-                <ul>
-                    <li><strong>Program Sponsors:</strong> Sponsor a specific program (e.g. music, woodwork/craft or art classes and/or rehabilitation services). Your support can cover equipment, materials, or instructor/therapist fees, ensuring sustainable benefits.</li>
-                    <li><strong>In-Kind Donations:</strong> Donate goods (food, clothing, school supplies) or services (landscaping, legal) as an in-kind donation.</li>
-                    <li><strong>Corporate Sponsors:</strong> CSR initiatives that benefit both your organization and Huis Talje. Share our values of hope, compassion and nurture.</li>
-                </ul>
+                <p><strong>Program Sponsors:</strong> Sponsor a specific program (e.g. music, woodwork/craft or art classes and/or rehabilitation services). Your support can cover equipment, materials, or instructor/therapist fees, ensuring sustainable benefits.</p>
+                <p><strong>In-Kind Donations:</strong> Donate goods (food, clothing, school supplies) or services (landscaping, legal) as an in-kind donation.</p>
+                <p><strong>Corporate Sponsors:</strong> CSR initiatives that benefit both your organization and Huis Talje. Share our values of hope, compassion and nurture.</p>
             </div>
 
-            <div class="doodle-card left-card" data-card="partner">
-                <img src="../images/get-involved/DOODLES.svg" alt="Doodles" class="doodle-bg">
-                <button class="open-form-btn">Become a Partner</button>
-                
-                <form class="inline-form">
-                    <button type="button" class="close-inline-btn">✕</button>
-                    <h3>Partner</h3>
-                    <input type="text" placeholder="Full name" required>
-                    <input type="email" placeholder="Email address" required>
-                    <input type="tel" placeholder="Phone number" required>
-                    <textarea placeholder="Message" rows="4"></textarea>
-                    <p class="consent-text">Thank you for your interest in partnering with us. We're so grateful to partners who share our vision. Let's work together to create lasting change.</p>
-                    <button type="submit" class="submit-btn">Submit</button>
-                </form>
+            <div class="involvement-card-wrapper right-position">
+                <div class="involvement-card" id="partner-card">
+                    <img src="../images/get-involved/DOODLES.svg" alt="Doodles" class="card-pattern">
+                    <button class="btn btn-orange card-trigger-btn">Become a Partner</button>
+                    
+                    <div class="card-expanded-content">
+                        <button type="button" class="card-close-btn">✕</button>
+                        <form class="involvement-form">
+                            <h3>Partner</h3>
+                            <input type="text" placeholder="Full name" required>
+                            <input type="email" placeholder="Email address" required>
+                            <input type="tel" placeholder="Phone number" required>
+                            <textarea placeholder="Message" rows="3"></textarea>
+                            <p class="form-disclaimer">Thank you for your interest in partnering with us. We're so grateful to partners who share our vision. Let's work together to create lasting change.</p>
+                            <button type="submit" class="btn btn-orange">Submit</button>
+                        </form>
+                        
+                        <div class="form-success-message">
+                            <img src="../images/get-involved/HeartHand.svg" alt="Thank you" class="success-icon">
+                            <p>Thank you for your interest in partnering with Huis Talje. We're so thankful to partners who share our vision. Let's work together to create lasting change. Can you share more?</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Partner Logos Carousel -->
-    <section class="partner-logos">
-        <div class="carousel-container">
-            <button class="carousel-btn prev-btn" aria-label="Previous">
+    <!-- Partners Carousel -->
+    <section class="partners-carousel-section">
+        <div class="carousel-controls">
+            <button class="carousel-nav-btn prev-partners" aria-label="Previous">
                 <img src="../images/get-involved/Carousel buttons left.svg" alt="Previous">
             </button>
             
-            <div class="carousel-track">
-                <div class="partner-card">
-                    <div class="logo-circle">
-                        <img src="../images/get-involved/Wool.png" alt="Woolworths SA">
-                    </div>
-                    <h3>Woolworths SA</h3>
-                    <p>Grocery & hygiene donations</p>
-                </div>
-                <div class="partner-card">
-                    <div class="logo-circle">
-                        <img src="../images/get-involved/Build.png" alt="Builders Warehouse">
-                    </div>
-                    <h3>Builders Warehouse</h3>
-                    <p>Supplies for upgrades & repairs</p>
-                </div>
-                <div class="partner-card">
-                    <div class="logo-circle">
-                        <img src="../images/get-involved/Pick.png" alt="Pick n Pay">
-                    </div>
-                    <h3>Pick n Pay</h3>
-                    <p>Food drives & volunteer support</p>
-                </div>
-                <div class="partner-card">
-                    <div class="logo-circle">
-                        <img src="../images/get-involved/Tastic.png" alt="Tastic">
-                    </div>
-                    <h3>Tastic</h3>
-                    <p>Pantry staples for daily meals</p>
-                </div>
-                <div class="partner-card">
-                    <div class="logo-circle">
-                        <img src="../images/get-involved/Mr.png" alt="Mr Price">
-                    </div>
-                    <h3>Mr Price</h3>
-                    <p>Youth & mentorship support</p>
-                </div>
+            <div class="partners-carousel-track">
+                <!-- Generated by JS -->
             </div>
 
-            <button class="carousel-btn next-btn" aria-label="Next">
+            <button class="carousel-nav-btn next-partners" aria-label="Next">
                 <img src="../images/get-involved/Carousel buttons right.svg" alt="Next">
             </button>
         </div>
@@ -233,79 +201,30 @@
 
     <!-- Budget Section -->
     <section class="budget-section">
-        <div class="budget-wrapper">
-            <img src="../images/get-involved/PinkLine.svg" alt="Heart in hand" class="heart-hand">
-            
-            <h2>Our Budget</h2>
-            
-            <div class="budget-cards">
-                <div class="budget-card" data-year="2020">
-                    <span class="year">2020</span>
-                    <button class="expand-btn" aria-label="View details">→</button>
-                </div>
-                <div class="budget-card" data-year="2021">
-                    <span class="year">2021</span>
-                    <button class="expand-btn" aria-label="View details">→</button>
-                </div>
-                <div class="budget-card" data-year="2022">
-                    <span class="year">2022</span>
-                    <button class="expand-btn" aria-label="View details">→</button>
-                </div>
-                <div class="budget-card" data-year="2023">
-                    <span class="year">2023</span>
-                    <button class="expand-btn" aria-label="View details">→</button>
-                </div>
-                <div class="budget-card" data-year="2024">
-                    <span class="year">2024</span>
-                    <button class="expand-btn" aria-label="View details">→</button>
-                </div>
-                <div class="budget-card" data-year="2025">
-                    <span class="year">2025</span>
-                    <button class="expand-btn" aria-label="View details">→</button>
-                </div>
-            </div>
+        <img src="../images/get-involved/PinkLine.svg" alt="Decorative" class="pink-line-decoration">
+        
+        <h2>Our Budget</h2>
+        
+        <div class="budget-accordion-container">
+            <!-- Generated by JS -->
         </div>
     </section>
 
-    <!-- Wishlist Section -->
+    <!-- Wishlist Carousel -->
     <section class="wishlist-section">
         <h2>Our Wishlist</h2>
-        <p>Small things make a big difference</p>
+        <p class="section-subtitle">Small things make a big difference</p>
 
-        <div class="carousel-container">
-            <button class="carousel-btn prev-btn wishlist-prev" aria-label="Previous">
+        <div class="carousel-controls">
+            <button class="carousel-nav-btn prev-wishlist" aria-label="Previous">
                 <img src="../images/get-involved/Carousel buttons left.svg" alt="Previous">
             </button>
             
-            <div class="wishlist-track">
-                <div class="wishlist-card">
-                    <img src="../images/get-involved/Bedding.svg" alt="Bedding" class="wishlist-icon">
-                    <h3>Bedding</h3>
-                    <p>Warm nights for our residents</p>
-                </div>
-                <div class="wishlist-card">
-                    <img src="../images/get-involved/Soap.svg" alt="Hygiene Packs" class="wishlist-icon">
-                    <h3>Hygiene Packs</h3>
-                    <p>Everyday care essentials</p>
-                </div>
-                <div class="wishlist-card">
-                    <img src="../images/get-involved/Pencil.svg" alt="Stationery" class="wishlist-icon">
-                    <h3>Stationery</h3>
-                    <p>Tools for learning & growth</p>
-                </div>
-                <div class="wishlist-card">
-                    <img src="../images/get-involved/Spray.svg" alt="Cleaning Products" class="wishlist-icon">
-                    <h3>Cleaning Products</h3>
-                    <p>Keep our spaces fresh</p>
-                </div>
-                <div class="wishlist-card">
-                    <img src="../images/get-involved/Shirt.svg" alt="Clothing & Shoes" class="wishlist-icon">
-                    <h3>Clothing & Shoes</h3>
-                    <p>Comfort for every season</p>
-                </div>
+            <div class="wishlist-carousel-track">
+                <!-- Generated by JS -->
             </div>
 
-            <button class="carousel-btn next-btn wishlist-next" aria-label="Next">
+            <button class="carousel-nav-btn next-wishlist" aria-label="Next">
                 <img src="../images/get-involved/Carousel buttons right.svg" alt="Next">
             </button>
         </div>
@@ -314,75 +233,77 @@
     <!-- Donation Section -->
     <section class="donation-section">
         <h2>Donate To Make A Difference</h2>
-        <p>Every contribution helps us continue our mission</p>
+        <p class="section-subtitle">Every contribution helps us continue our mission</p>
 
-        <div class="donation-cards">
-            <div class="doodle-card donation-card right-card" data-card="once-off">
-                <img src="../images/get-involved/DOODLES.svg" alt="Doodles" class="doodle-bg">
-                <button class="open-form-btn">Once-Off Donation</button>
-                
-                <form class="inline-form">
-                    <button type="button" class="close-inline-btn">✕</button>
-                    <h3>Once-Off</h3>
-                    <div class="radio-group">
-                        <p>Pick an Amount</p>
-                        <label>
-                            <input type="radio" name="amount" value="100">
-                            R100
-                        </label>
-                        <label>
-                            <input type="radio" name="amount" value="250">
-                            R250
-                        </label>
-                        <label>
-                            <input type="radio" name="amount" value="500">
-                            R500
-                        </label>
+        <div class="donation-cards-wrapper">
+            <div class="involvement-card-wrapper left-position">
+                <div class="involvement-card" id="once-off-card">
+                    <img src="../images/get-involved/DOODLES.svg" alt="Doodles" class="card-pattern">
+                    <button class="btn btn-orange card-trigger-btn">Once-Off Donation</button>
+                    
+                    <div class="card-expanded-content">
+                        <button type="button" class="card-close-btn">✕</button>
+                        <form class="involvement-form">
+                            <h3>Once-Off</h3>
+                            <div class="radio-options">
+                                <p class="radio-label">Pick an Amount</p>
+                                <label><input type="radio" name="amount" value="100"><span>R100</span></label>
+                                <label><input type="radio" name="amount" value="250"><span>R250</span></label>
+                                <label><input type="radio" name="amount" value="500"><span>R500</span></label>
+                            </div>
+                            <input type="number" placeholder="Enter own amount" min="1">
+                            <p class="form-disclaimer">Your donation is tax deductible. When you donate, you'll receive a confirmation email with all the details you need.</p>
+                            <button type="submit" class="btn btn-orange">Donate Now</button>
+                        </form>
+                        
+                        <div class="form-success-message">
+                            <img src="../images/get-involved/HeartHand.svg" alt="Thank you" class="success-icon">
+                            <p>Thank you for your kind donation!</p>
+                        </div>
                     </div>
-                    <input type="number" placeholder="Enter own amount" min="1">
-                    <p class="info-text">Your donation is tax deductible. When you donate, you'll receive a confirmation email with all the details you need.</p>
-                    <button type="submit" class="submit-btn">Donate Now</button>
-                </form>
+                </div>
             </div>
 
-            <div class="doodle-card donation-card left-card" data-card="monthly">
-                <img src="../images/get-involved/DOODLES.svg" alt="Doodles" class="doodle-bg">
-                <button class="open-form-btn">Recurring Donations</button>
-                
-                <form class="inline-form">
-                    <button type="button" class="close-inline-btn">✕</button>
-                    <h3>Monthly</h3>
-                    <input type="text" placeholder="Full name" required>
-                    <input type="email" placeholder="Email address" required>
-                    <input type="tel" placeholder="Phone number" required>
-                    <div class="radio-group">
-                        <p>Pick an Amount</p>
-                        <label>
-                            <input type="radio" name="monthly-amount" value="100">
-                            R100
-                        </label>
-                        <label>
-                            <input type="radio" name="monthly-amount" value="250">
-                            R250
-                        </label>
-                        <label>
-                            <input type="radio" name="monthly-amount" value="500">
-                            R500
-                        </label>
+            <div class="involvement-card-wrapper right-position">
+                <div class="involvement-card" id="monthly-card">
+                    <img src="../images/get-involved/DOODLES.svg" alt="Doodles" class="card-pattern">
+                    <button class="btn btn-orange card-trigger-btn">Recurring Donations</button>
+                    
+                    <div class="card-expanded-content">
+                        <button type="button" class="card-close-btn">✕</button>
+                        <form class="involvement-form">
+                            <h3>Monthly</h3>
+                            <input type="text" placeholder="Full name" required>
+                            <input type="email" placeholder="Email address" required>
+                            <input type="tel" placeholder="Phone number" required>
+                            <div class="radio-options">
+                                <p class="radio-label">Pick an Amount</p>
+                                <label><input type="radio" name="monthly-amount" value="100"><span>R100</span></label>
+                                <label><input type="radio" name="monthly-amount" value="250"><span>R250</span></label>
+                                <label><input type="radio" name="monthly-amount" value="500"><span>R500</span></label>
+                            </div>
+                            <input type="number" placeholder="Enter own amount" min="1">
+                            <p class="form-disclaimer">Welcome to our circle of loyal supporters! You will receive monthly updates on the impact you are making. You may cancel at any time.</p>
+                            <button type="submit" class="btn btn-orange">Donate Now</button>
+                        </form>
+                        
+                        <div class="form-success-message">
+                            <img src="../images/get-involved/HeartHand.svg" alt="Thank you" class="success-icon">
+                            <p>Welcome to our circle of loyal supporters!</p>
+                        </div>
                     </div>
-                    <input type="number" placeholder="Enter own amount" min="1">
-                    <p class="info-text">Welcome to our circle of loyal supporters! You will receive monthly updates on the impact you are making. You may cancel at any time.</p>
-                    <button type="submit" class="submit-btn">Donate Now</button>
-                </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <img src="../images/get-involved/HousePattern.svg" alt="" class="section-border bottom-border">
+    <img src="../images/get-involved/HousePattern.svg" alt="" class="section-divider">
+
+    <img src="../images/homepage/BorderFooter.svg" alt="Big pink doodle" class="footer-line-decoration">
 
     <!-- Footer -->
     <footer>
-        <img src="../images/homepage/footer-border-top.svg" alt="" class="footer-border-top">
+        <img src="../images/homepage/HeaderBorder.svg" alt="" class="footer-border-top">
         
         <div class="footer-main">
             <div class="footer-content">
@@ -393,34 +314,28 @@
                     <p>Subscribe to our newsletter</p>
                     <form class="newsletter-form">
                         <input type="email" placeholder="Email address" required>
-                        <button type="submit"><img src="../images/icons/PencilIcon.svg" alt="Submit"></button>
+                        <button type="submit">→</button>
                     </form>
                     <div class="social-icons">
-                        <a href="#" class="social-icon" aria-label="Instagram">
-                            <img src="../images/icons/InstaIcon.svg" alt="Instagram">
-                        </a>
-                        <a href="#" class="social-icon" aria-label="Facebook">
-                            <img src="../images/icons/FaceIcon.svg" alt="Facebook">
-                        </a>
-                        <a href="#" class="social-icon" aria-label="Pinterest">
-                            <img src="../images/icons/TikIcon.svg" alt="Pinterest">
-                        </a>
+                        <a href="#" class="social-icon"><img src="../images/icons/InstaIcon.svg" alt="Instagram"></a>
+                        <a href="#" class="social-icon"><img src="../images/icons/FaceIcon.svg" alt="Facebook"></a>
+                        <a href="#" class="social-icon"><img src="../images/icons/TikIcon.svg" alt="TikTok"></a>
                     </div>
                 </div>
 
                 <div class="footer-section footer-links">
-                    <div class="footer-links-left">
+                    <div class="footer-links-col">
                         <h4>Volunteer</h4>
                         <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Get Involved</a></li>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="get-involved.html">Get Involved</a></li>
                             <li><a href="#">Our Wishlist</a></li>
-                            <li><a href="#">Projects</a></li>
-                            <li><a href="#">Inside Huis Talje</a></li>
-                            <li><a href="#">Profile</a></li>
+                            <li><a href="projects.html">Projects</a></li>
+                            <li><a href="inside-talje.html">Inside Huis Talje</a></li>
+                            <li><a href="profile.html">Profile</a></li>
                         </ul>
                     </div>
-                    <div class="footer-links-right">
+                    <div class="footer-links-col">
                         <h4>Info</h4>
                         <ul>
                             <li><a href="#">Events</a></li>
@@ -432,120 +347,6 @@
 
         <img src="../images/homepage/Footer Doodles.svg" alt="" class="footer-border-bottom">
     </footer>
-
-    <!-- Modal Forms -->
-    <div class="modal-overlay" id="volunteerModal">
-        <div class="modal-content">
-            <button class="close-modal">✕</button>
-            <h2>Volunteer</h2>
-            <form class="involvement-form">
-                <input type="text" placeholder="Full name" required>
-                <input type="email" placeholder="Email address" required>
-                <input type="tel" placeholder="Phone number" required>
-                <select required>
-                    <option value="">Type of Partnership</option>
-                    <option value="caregiving">Caregiving</option>
-                    <option value="event-planning">Event Planning</option>
-                    <option value="garden-maintenance">Garden & Maintenance</option>
-                    <option value="skill-sharing">Skill Sharing</option>
-                    <option value="corporate-volunteer">Corporate Volunteer Day</option>
-                    <option value="other">Other</option>
-                </select>
-                <div class="checkbox-group">
-                    <label>
-                        <input type="checkbox" name="availability" value="weekly">
-                        Weekly
-                    </label>
-                    <label>
-                        <input type="checkbox" name="availability" value="monthly">
-                        Monthly
-                    </label>
-                    <label>
-                        <input type="checkbox" name="availability" value="special-events">
-                        Special Events
-                    </label>
-                    <label>
-                        <input type="checkbox" name="availability" value="once-off">
-                        Once-off
-                    </label>
-                </div>
-                <p class="consent-text">We welcome permanently or temporarily volunteers at Huis Talje. Whether you want to volunteer for a once, contribute with specific tasks, or join us regularly, we have opportunities waiting for you. Your time and skills will make an impact in creating the life we all deserve.</p>
-                <button type="submit" class="submit-btn">Submit</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="partnerModal">
-        <div class="modal-content">
-            <button class="close-modal">✕</button>
-            <h2>Partner</h2>
-            <form class="involvement-form">
-                <input type="text" placeholder="Full name" required>
-                <input type="email" placeholder="Email address" required>
-                <input type="tel" placeholder="Phone number" required>
-                <textarea placeholder="Message"></textarea>
-                <p class="consent-text">Thank you for your interest in partnering with us. We're so grateful to partners who share our vision. Let's work together to create lasting change. Can you share more?</p>
-                <button type="submit" class="submit-btn">Submit</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="onceOffModal">
-        <div class="modal-content">
-            <button class="close-modal">✕</button>
-            <h2>Once-Off</h2>
-            <form class="involvement-form">
-                <div class="radio-group">
-                    <p>Pick an Amount</p>
-                    <label>
-                        <input type="radio" name="amount" value="100">
-                        R100
-                    </label>
-                    <label>
-                        <input type="radio" name="amount" value="250">
-                        R250
-                    </label>
-                    <label>
-                        <input type="radio" name="amount" value="500">
-                        R500
-                    </label>
-                </div>
-                <input type="number" placeholder="Enter own amount" min="1">
-                <p class="info-text">Your donation is tax deductible. When you donate, you'll receive a confirmation email, and you can include this information (you should have received an email link already)</p>
-                <button type="submit" class="submit-btn">Donate Now</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="monthlyModal">
-        <div class="modal-content">
-            <button class="close-modal">✕</button>
-            <h2>Monthly</h2>
-            <form class="involvement-form">
-                <input type="text" placeholder="Full name" required>
-                <input type="email" placeholder="Email address" required>
-                <input type="tel" placeholder="Phone number" required>
-                <div class="radio-group">
-                    <p>Pick an Amount</p>
-                    <label>
-                        <input type="radio" name="monthly-amount" value="100">
-                        R100
-                    </label>
-                    <label>
-                        <input type="radio" name="monthly-amount" value="250">
-                        R250
-                    </label>
-                    <label>
-                        <input type="radio" name="monthly-amount" value="500">
-                        R500
-                    </label>
-                </div>
-                <input type="number" placeholder="Enter own amount" min="1">
-                <p class="info-text">Welcome to our circle of loyal supporters! Recurring donations help us plan for the future and sustain ongoing support at Huis Talje. You will receive monthly updates on the impact you are making. You may cancel at any time.</p>
-                <button type="submit" class="submit-btn">Donate Now</button>
-            </form>
-        </div>
-    </div>
 
     <!-- Back to Top -->
     <img src="../images/homepage/BackToTop.svg" alt="Back to top" class="back-to-top">
