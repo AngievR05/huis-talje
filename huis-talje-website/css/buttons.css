@@ -26,8 +26,10 @@
    Used for: Get Involved, Step Inside
    ========================================== */
 .btn-orange {
-    background: linear-gradient(180deg, #e8642f 0%, #d45520 100%);
-    box-shadow: inset 0 2px 4px rgba(255,255,255,0.3), 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 100px;
+border: 5px solid var(--Dark-Orange, #CE4610);
+background: #E8642F;
+box-shadow: 6px 6px 10px 0 rgba(255, 255, 255, 0.46) inset, -8px -10px 4px 0 rgba(0, 0, 0, 0.15) inset;
 }
 
 /* Light Shine Effect - Top Left */
@@ -58,21 +60,23 @@
 
 /* Hover State */
 .btn-orange:hover {
-    background: linear-gradient(180deg, #f07540 0%, #e8642f 100%);
-    transform: translateY(-2px);
-    box-shadow: inset 0 2px 4px rgba(255,255,255,0.4), 0 6px 12px rgba(0,0,0,0.25);
+border-radius: 100px;
+border: 5px solid var(--Dark-Orange, #CE4610);
+background: #E8642F;
+box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.41), 6px 6px 10px 0 #FFF inset, -8px -10px 4px 0 rgba(0, 0, 0, 0.15) inset;
 }
 
 /* Active/Pressed State */
 .btn-orange:active {
-    background: linear-gradient(180deg, #c44a15 0%, #b03d10 100%);
-    transform: translateY(1px);
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.15);
+border-radius: 100px;
+background: var(--Dark-Orange, #CE4610);
+box-shadow: 6px 6px 10px 0 rgba(0, 0, 0, 0.46) inset;
 }
 
 /* Disabled State */
 .btn-orange:disabled {
-    background: linear-gradient(180deg, #d9a890 0%, #c99580 100%);
+border-radius: 100px;
+background: rgba(143, 41, 0, 0.57);
     cursor: not-allowed;
     opacity: 0.6;
     transform: none;
@@ -83,8 +87,10 @@
    Used for: Learn More
    ========================================== */
 .btn-green {
-    background: #AFAB24;
-    box-shadow: inset 0 2px 4px rgba(255,255,255,0.3), 0 4px 8px rgba(0,0,0,0.2);
+border-radius: 100px;
+border: 5px solid var(--Green-Accent, #445F08);
+background: var(--Green, #AFAB24);
+box-shadow: 6px 6px 10px 0 rgba(255, 255, 255, 0.46) inset, -8px -10px 4px 0 rgba(0, 0, 0, 0.15) inset;
 }
 
 /* Light Shine Effect - Top Left */
@@ -115,21 +121,23 @@
 
 /* Hover State */
 .btn-green:hover {
-    background: linear-gradient(180deg, #c4bf30 0%, #AFAB24 100%);
-    transform: translateY(-2px);
-    box-shadow: inset 0 2px 4px rgba(255,255,255,0.4), 0 6px 12px rgba(0,0,0,0.25);
+border-radius: 100px;
+border: 5px solid var(--Green-Accent, #445F08);
+background: var(--Green, #AFAB24);
+box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.41), 6px 6px 10px 0 #FFF inset, -8px -10px 4px 0 rgba(0, 0, 0, 0.15) inset;
 }
 
 /* Active/Pressed State */
 .btn-green:active {
-    background: linear-gradient(180deg, #6b6915 0%, #56540f 100%);
-    transform: translateY(1px);
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.15);
+border-radius: 100px;
+background: var(--Green-Accent, #445F08);
+box-shadow: 6px 6px 10px 0 rgba(0, 0, 0, 0.46) inset;
 }
 
 /* Disabled State */
 .btn-green:disabled {
-    background: linear-gradient(180deg, #c4c49f 0%, #a8a88f 100%);
+border-radius: 100px;
+background: #96A575;
     cursor: not-allowed;
     opacity: 0.6;
     transform: none;
@@ -192,8 +200,10 @@
    Additional variant if needed
    ========================================== */
 .btn-pink {
-    background: linear-gradient(180deg, #FF8CB7 0%, #e5659d 100%);
-    box-shadow: inset 0 2px 4px rgba(255,255,255,0.3), 0 4px 8px rgba(0,0,0,0.2);
+border-radius: 100px;
+border: 5px solid var(--Pink-Accent, #BD002F);
+background: var(--Pink, #FF8CB7);
+box-shadow: 6px 6px 10px 0 rgba(255, 255, 255, 0.46) inset, -8px -10px 4px 0 rgba(0, 0, 0, 0.15) inset;
 }
 
 .btn-pink::before {
@@ -221,19 +231,21 @@
 }
 
 .btn-pink:hover {
-    background: linear-gradient(180deg, #ffaac9 0%, #FF8CB7 100%);
-    transform: translateY(-2px);
-    box-shadow: inset 0 2px 4px rgba(255,255,255,0.4), 0 6px 12px rgba(0,0,0,0.25);
+border-radius: 100px;
+border: 5px solid var(--Pink-Accent, #BD002F);
+background: var(--Pink, #FF8CB7);
+box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.41), 6px 6px 10px 0 #FFF inset, -8px -10px 4px 0 rgba(0, 0, 0, 0.15) inset;
 }
 
 .btn-pink:active {
-    background: linear-gradient(180deg, #c04476 0%, #a73962 100%);
-    transform: translateY(1px);
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.15);
+border-radius: 100px;
+background: var(--Pink-Accent, #BD002F);
+box-shadow: 6px 6px 10px 0 rgba(0, 0, 0, 0.46) inset;
 }
 
 .btn-pink:disabled {
-    background: linear-gradient(180deg, #e5c4d3 0%, #d4b0bf 100%);
+border-radius: 100px;
+background: #C27C96;
     cursor: not-allowed;
     opacity: 0.6;
     transform: none;

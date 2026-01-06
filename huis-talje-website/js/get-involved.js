@@ -72,14 +72,34 @@ document.querySelectorAll('.involvement-form').forEach(form => {
             return;
         }
         
-        // Show success message
+        // Hide form, show success message
         const card = form.closest('.involvement-card');
-        card.classList.add('submitted');
+        const successOverlay = card.querySelector('.form-success-message-overlay');
         
-        // Reset form after delay
+        if (successOverlay) {
+            successOverlay.style.display = 'flex';
+        }
+        
+        // Reset form
         setTimeout(() => {
             form.reset();
         }, 100);
+    });
+});
+
+// Close buttons on success overlays
+document.querySelectorAll('.form-success-message-overlay .card-close-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const card = this.closest('.involvement-card');
+        const successOverlay = this.closest('.form-success-message-overlay');
+        
+        // Hide success message
+        if (successOverlay) {
+            successOverlay.style.display = 'none';
+        }
+        
+        // Close card
+        card.classList.remove('expanded');
     });
 });
 
@@ -234,7 +254,7 @@ const wishlistData = [
     { icon: 'Pencil.svg', name: 'Stationery', desc: 'Tools for learning & growth' },
     { icon: 'Spray.svg', name: 'Cleaning Products', desc: 'Keep our spaces fresh' },
     { icon: 'Shirt.svg', name: 'Clothing & Shoes', desc: 'Comfort for every season' },
-    { icon: 'Books.png', name: 'Books', desc: 'Stories that inspire minds' },
+    { icon: 'Books.svg', name: 'Books', desc: 'Stories that inspire minds' },
     { icon: 'Teddy.svg', name: 'Toys & Games', desc: 'Joy through play' },
     { icon: 'Pan.svg', name: 'Kitchen Equipment', desc: 'Gear for daily meals' },
     { icon: 'Garden.svg', name: 'Garden Supplies', desc: 'Grow, learn & nurture' },

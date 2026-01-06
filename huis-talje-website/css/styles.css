@@ -69,7 +69,7 @@ h1 + p, h2 + p, h3 + p {
 header {
     background-color: #e8642f;
     padding: 15px 0 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    /* box-shadow: 0 2px 8px rgba(0,0,0,0.1); */
     position: sticky;
     top: 0;
     z-index: 1000;
