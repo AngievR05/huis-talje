@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Huis Talje</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Over+the+Rainbow&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="../images/homepage/Logo.svg" alt="Huis Talje Logo" class="logo-image">
+            </div>
+            <div class="nav-divider"></div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="get-involved.html">Get Involved</a></li>
+                    <li><a href="inside-talje.html">Inside Huis Talje</a></li>
+                    <li><a href="profile.html" class="active">Profile</a></li>
+                    <li class="dropdown">
+                        <a href="#">Contact Us</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="tel:+27123456789">
+                                    <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                    </svg>
+                                    Phone
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://wa.me/27123456789" target="_blank">
+                                    <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                    WhatsApp
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mailto:info@huistalje.org">
+                                    <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                    Email
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <img src="../images/homepage/BorderNav.svg" alt="Navigation border" class="nav-border">
+    </header>
+
+    <!-- Hero Section -->
+    <section class="profile-hero">
+        <div class="hero-text">
+            <h1>Discover your journey with Huis Talje</h1>
+            <p>See the difference you've made and stay connected with your involvement. Track your volunteer hours, view your donations, access your involvement, upcoming events, and exclusive updates, all tailored to your journey with us.</p>
+        </div>
+        
+        <img src="../images/homepage/HeaderBorder.svg" alt="" class="section-divider">
+    </section>
+
+    <!-- Welcome Card -->
+    <section class="welcome-section">
+        <div class="welcome-card">
+            <img src="../images/profile/3LinesLeft.svg" alt="" class="welcome-decoration left-decoration">
+            <img src="../images/profile/WelcomeCardBorder.svg" alt="" class="welcome-border">
+            
+            <div class="welcome-content">
+                <div class="welcome-text">
+                    <h2 id="user-name">Welcome back, Jane!</h2>
+                    <p id="last-visit">Last visit: March 2024</p>
+                </div>
+                
+                <div class="event-badge">
+                    <span class="event-number" id="active-events">12</span>
+                    <span class="event-label">Total Active Events</span>
+                </div>
+            </div>
+            
+            <img src="../images/profile/3LinesRight.svg" alt="" class="welcome-decoration right-decoration">
+        </div>
+    </section>
+
+    <!-- Your Contribution Section -->
+    <section class="contribution-section">
+        <h2>Your Contribution</h2>
+        
+        <div class="contribution-cards">
+            <div class="contribution-card">
+                <img src="../images/profile/BluePuzzle.svg" alt="Puzzle shape" class="puzzle-shape">
+                <div class="contribution-content">
+                    <img src="../images/profile/PresentIcon.svg" alt="Donation icon" class="contribution-icon">
+                    <div class="contribution-amount" id="total-donated">R10 000</div>
+                    <div class="contribution-label">Total Donated</div>
+                </div>
+            </div>
+            
+            <div class="contribution-card">
+                <img src="../images/profile/GreenPuzzle.svg" alt="Puzzle shape" class="puzzle-shape">
+                <div class="contribution-content">
+                    <img src="../images/profile/ClockIcon.svg" alt="Volunteer icon" class="contribution-icon">
+                    <div class="contribution-amount" id="volunteer-hours">28</div>
+                    <div class="contribution-label">Volunteer Hours</div>
+                </div>
+            </div>
+            
+            <div class="contribution-card">
+                <img src="../images/profile/PinkPuzzle.svg" alt="Puzzle shape" class="puzzle-shape">
+                <div class="contribution-content">
+                    <img src="../images/profile/CalenderIcon.svg" alt="Events icon" class="contribution-icon">
+                    <div class="contribution-amount" id="events-attended">3</div>
+                    <div class="contribution-label">Events Attended</div>
+                </div>
+            </div>
+        </div>
+        
+        <p class="contribution-note">See the difference you've made with your support. Whether it's donations, volunteer hours, and event participation all contribute to a brighter future for our kids.</p>
+        
+        <div class="contribution-actions">
+            <a href="get-involved.html#donation-section" class="btn btn-orange">DONATE</a>
+            <a href="get-involved.html#volunteer-section" class="btn btn-orange">VOLUNTEER</a>
+        </div>
+    </section>
+
+    <!-- Decorative Border -->
+    <img src="../images/profile/HousePattern.svg" alt="" class="house-pattern-border">
+
+    <!-- Activity Section -->
+    <section class="activity-section">
+        <div class="activity-container">
+            <!-- Your Contributions List -->
+            <div class="contributions-list">
+                <h3>Your Contributions</h3>
+                <div id="contributions-feed">
+                    <!-- Generated by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Upcoming Events -->
+            <div class="upcoming-events">
+                <h3>Upcoming Events</h3>
+                <div id="events-list">
+                    <!-- Generated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section class="cta-banner-section">
+        <a href="projects.html" class="cta-banner-link">
+            <img src="../images/profile/WEB BANNER 6.png" alt="Discover Huis Talje" class="cta-banner-image">
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <img src="../images/homepage/HeaderBorder.svg" alt="" class="footer-border-top">
+        
+        <div class="footer-main">
+            <div class="footer-content">
+                <!-- Newsletter Section -->
+                <div class="footer-section newsletter">
+                    <div class="footer-logo">
+                        <img src="../images/homepage/Logo.svg" alt="Huis Talje Logo" class="footer-logo-img">
+                    </div>
+                    <p>Subscribe to our newsletter</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email address" required>
+                        <button type="submit" aria-label="Subscribe"><img src="../images/icons/PencilIcon.svg"></button>
+                    </form>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-section footer-quick-links">
+                    <ul>
+                        <li><a href="#contribution-section">Your Contribution</a></li>
+                        <li><a href="#contributions-list">Events</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Navigation & Social -->
+                <div class="footer-section footer-nav-social">
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="get-involved.html">Get Involved</a></li>
+                        <li><a href="projects.html">Our Projects</a></li>
+                        <li><a href="inside-talje.html">Inside Huis Talje</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                    </ul>
+                    
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><img src="../images/icons/InstaIcon.svg" alt="Instagram"></a>
+                        <a href="#" class="social-icon"><img src="../images/icons/FaceIcon.svg" alt="Facebook"></a>
+                        <a href="#" class="social-icon"><img src="../images/icons/TikIcon.svg" alt="TikTok"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <img src="../images/homepage/Footer Doodles.svg" alt="" class="footer-border-bottom">
+    </footer>
+
+    <!-- Back to Top -->
+    <img src="../images/homepage/BackToTop.svg" alt="Back to top" class="back-to-top">
+
+    <script src="../js/profile.js"></script>
+</body>
+</html>
