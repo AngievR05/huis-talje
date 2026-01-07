@@ -1,0 +1,474 @@
+/* ==========================================
+   INSIDE HUIS TALJE PAGE STYLES
+   ========================================== */
+
+/* Hero Section */
+.inside-hero {
+    background: #FFF9E9;
+    padding: 60px 20px 0;
+    text-align: center;
+}
+
+.inside-hero h1 {
+    font-family: 'Over the Rainbow', cursive;
+    color: #e8642f;
+    font-size: 52px;
+    margin-bottom: 25px;
+}
+
+.inside-hero > p {
+    max-width: 850px;
+    margin: 0 auto 50px;
+    color: #e8642f;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.hero-illustration {
+    margin: 40px 0 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.section-divider {
+    width: 100%;
+    display: block;
+    margin: 0;
+}
+
+/* Program Sections */
+.day-program-section,
+.night-program-section {
+    padding: 50px 20px;
+    background: #FFF9E9;
+    position: relative;
+}
+
+.day-program-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 80px;
+}
+
+.night-program-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 80px;
+}
+
+.program-content {
+    flex: 1;
+    max-width: 700px;
+}
+
+.day-program-section h2,
+.night-program-section h2 {
+    font-family: 'Over the Rainbow', cursive;
+    color: #e8642f;
+    font-size: 44px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.program-icon {
+    width: 250px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.sun-icon {
+    /* Positioned via flex layout */
+}
+
+.moon-icon {
+    /* Positioned via flex layout */
+}
+
+/* Schedule Card */
+.schedule-card {
+    max-width: 100%;
+    margin: 0;
+    background: #FFC3D9;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(255, 140, 183, 0.25);
+    overflow: hidden;
+}
+
+.schedule-header {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    padding: 20px 30px;
+    border-bottom: 2px solid rgba(189, 0, 47, 0.15);
+}
+
+.schedule-column-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #712642;
+}
+
+.schedule-body {
+    max-height: 450px;
+    overflow-y: auto;
+    padding: 20px 30px;
+}
+
+.schedule-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.schedule-row:last-child {
+    margin-bottom: 0;
+}
+
+.time-slot {
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.time-slot .start-time {
+    font-size: 20px;
+    font-weight: 700;
+    color: #712642;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.time-slot .end-time {
+    font-size: 18px;
+    font-weight: 500;
+    color: #9d4d68;
+    display: block;
+}
+
+.task-description {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 15px 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.task-description .task-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #712642;
+    line-height: 1.5;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.task-description .task-detail {
+    font-size: 13px;
+    font-weight: 400;
+    color: #712642;
+    line-height: 1.5;
+    margin-top: 4px;
+    text-align: center;
+}
+
+/* Custom Scrollbar for Schedule */
+.schedule-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.schedule-body::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.schedule-body::-webkit-scrollbar-thumb {
+    background: rgba(189, 0, 47, 0.4);
+    border-radius: 10px;
+}
+
+.schedule-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(189, 0, 47, 0.6);
+}
+
+/* Blue Waves */
+.blue-wave {
+    display: block;
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.short-wave {
+    width: 40%;
+    float: right;
+    margin-top: -100px;
+    margin-bottom: 0;
+}
+
+.long-wave {
+    width: 100%;
+    margin-top: -300px;
+}
+
+/* Meet The Team Section */
+.meet-team-section {
+    padding: 50px 20px;
+    background: #FFF9E9;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.meet-team-section h2 {
+    font-family: 'Over the Rainbow', cursive;
+    color: #e8642f;
+    font-size: 44px;
+    margin-bottom: 15px;
+}
+
+.team-subtitle {
+    max-width: 750px;
+    margin: 0 auto 50px;
+    color: #e8642f;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.team-carousel-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.carousel-nav-btn {
+    flex-shrink: 0;
+    width: 55px;
+    height: 55px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.3s;
+}
+
+.carousel-nav-btn:hover {
+    transform: scale(1.1);
+}
+
+.carousel-nav-btn img {
+    width: 100%;
+    height: 100%;
+}
+
+.team-carousel {
+    display: flex;
+    gap: 30px;
+    overflow: hidden;
+    flex: 1;
+    justify-content: center;
+}
+
+/* Profile Card with Flip */
+.profile-card-container {
+    width: 280px;
+    height: 320px;
+    perspective: 1000px;
+    flex-shrink: 0;
+}
+
+.profile-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.profile-card-container:hover .profile-card {
+    transform: rotateY(180deg);
+}
+
+.profile-card-front,
+.profile-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.profile-card-front img,
+.profile-card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.profile-card-back {
+    transform: rotateY(180deg);
+}
+
+/* Be Part of the Care Section */
+.be-part-section {
+    padding: 50px 20px;
+    background: #FFF9E9;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.be-part-section h2 {
+    font-family: 'Over the Rainbow', cursive;
+    color: #e8642f;
+    font-size: 44px;
+    margin-bottom: 20px;
+}
+
+.be-part-section > p {
+    max-width: 750px;
+    margin: 0 auto 40px;
+    color: #e8642f;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.action-buttons .btn {
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .day-program-section,
+    .night-program-section {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .night-program-section {
+        flex-direction: column;
+    }
+    
+    .program-icon {
+        width: 200px;
+    }
+    
+    .program-content {
+        max-width: 600px;
+    }
+    
+    .schedule-card {
+        max-width: 600px;
+    }
+    
+    .team-carousel {
+        gap: 20px;
+    }
+    
+    .profile-card-container {
+        width: 240px;
+        height: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .inside-hero h1,
+    .day-program-section h2,
+    .night-program-section h2,
+    .meet-team-section h2,
+    .be-part-section h2 {
+        font-size: 36px;
+    }
+    
+    .program-icon {
+        width: 150px;
+    }
+    
+    .schedule-card {
+        max-width: 100%;
+    }
+    
+    .schedule-header,
+    .schedule-row {
+        grid-template-columns: 140px 1fr;
+    }
+    
+    .schedule-header {
+        padding: 15px 20px;
+    }
+    
+    .schedule-body {
+        padding: 15px 20px;
+    }
+    
+    .schedule-column-title {
+        font-size: 18px;
+    }
+    
+    .time-slot .start-time {
+        font-size: 16px;
+    }
+    
+    .time-slot .end-time {
+        font-size: 14px;
+    }
+    
+    .task-description .task-title {
+        font-size: 12px;
+    }
+    
+    .task-description .task-detail {
+        font-size: 11px;
+    }
+    
+    .team-carousel {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .profile-card-container {
+        scroll-snap-align: start;
+        width: 220px;
+        height: 260px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .action-buttons .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}
