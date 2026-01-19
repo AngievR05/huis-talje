@@ -67,52 +67,143 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // ==========================================
-    // PUZZLE PIECE INTERACTION
-    // ==========================================
-    const puzzleContainers = document.querySelectorAll('.puzzle-container');
-    const puzzleDescription = document.getElementById('puzzle-description');
-    
-    const puzzleTexts = {
-        'current': {
-            text: "Discover Huis Talje's journey of care and growth, from our current projects building brighter futures, to the past projects that shaped our home, and the success stories that celebrate the children's incredible resilience and achievements.",
-            color: 'orange'
-        },
-        'past': {
-            text: "Over the years, Huis Talje has completed many meaningful projects that continue to shape our home today. From renovated spaces to successful community initiatives, these projects reflect the dedication, teamwork, and compassion that keep Huis Talje growing stronger each year.",
-            color: 'pink'
-        },
-        'success': {
-            text: "Every child at Huis Talje has a unique journey, and our success stories celebrate their growth, resilience, and achievements. From milestones in learning and literacy to personal triumphs, these stories show the lasting impact of care, support, and community involvement.",
-            color: 'purple'
-        }
-    };
-    
-    puzzleContainers.forEach(container => {
-        container.addEventListener('click', function() {
-            const puzzleType = this.getAttribute('data-puzzle');
-            const puzzlePiece = this.querySelector('.puzzle-piece');
-            
-            // If this puzzle is already in hand, do nothing
-            if (puzzlePiece.classList.contains('in-hand')) {
-                return;
-            }
-            
-            // Remove in-hand class from all puzzles
-            puzzleContainers.forEach(pc => {
-                pc.querySelector('.puzzle-piece').classList.remove('in-hand');
-            });
-            
-            // Add in-hand class to clicked puzzle (moves it to the hand)
-            puzzlePiece.classList.add('in-hand');
-            
-            // Update text and color
-            if (puzzleTexts[puzzleType]) {
-                puzzleDescription.textContent = puzzleTexts[puzzleType].text;
-                puzzleDescription.className = 'puzzle-description ' + puzzleTexts[puzzleType].color;
-            }
-        });
-    });
+// ==========================================
+// PUZZLE PIECE INTERACTION (STABLE GRID SWAP)
+// ==========================================
+const puzzleStage = document.getElementById('puzzleStage');
+const handSlot = document.getElementById('handSlot');
+
+const puzzleButtons = Array.from(document.querySelectorAll('.puzzle-container'));
+const puzzleDescription = document.getElementById('puzzle-description');
+
+const puzzleTexts = {
+  current: {
+    text: "Discover Huis Talje's journey of care and growth, from our current projects building brighter futures, to the past projects that shaped our home, and the success stories that celebrate the children's incredible resilience and achievements.",
+    color: "orange"
+  },
+  past: {
+    text: "Over the years, Huis Talje has completed many meaningful projects that continue to shape our home today. From renovated spaces to successful community initiatives, these projects reflect the dedication, teamwork, and compassion that keep Huis Talje growing stronger each year.",
+    color: "pink"
+  },
+  success: {
+    text: "Every child at Huis Talje has a unique journey, and our success stories celebrate their growth, resilience, and achievements. From milestones in learning and literacy to personal triumphs, these stories show the lasting impact of care, support, and community involvement.",
+    color: "purple"
+  }
+};
+
+let heldBtn = null;
+
+function getCenter(el) {
+  const r = el.getBoundingClientRect();
+  return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+}
+
+function moveImgToCenter(img, targetCenter) {
+  const from = getCenter(img);
+  const dx = targetCenter.x - from.x;
+  const dy = targetCenter.y - from.y;
+  img.style.transform = `translate3d(${dx}px, ${dy}px, 0)`;
+}
+
+function hardResetToGridPositions() {
+  // Turn off transitions so reset is instant and measurable
+  puzzleButtons.forEach(btn => {
+    const img = btn.querySelector('.puzzle-piece');
+    img.classList.remove('is-held');
+    img.style.transition = 'none';
+    img.style.transform = 'translate3d(0,0,0)';
+  });
+
+  // Force layout flush (critical)
+  void puzzleStage.offsetHeight;
+
+  // Restore transitions
+  puzzleButtons.forEach(btn => {
+    const img = btn.querySelector('.puzzle-piece');
+    img.style.transition = '';
+  });
+}
+
+function applyLayout(selectedBtn) {
+  if (!handSlot) return;
+
+  // 1) Hard reset so DOMRects are stable
+  hardResetToGridPositions();
+
+  // 2) Capture the 3 grid slot centers (where puzzles should sit when not held)
+  const slotCenters = puzzleButtons.map(btn => {
+    const img = btn.querySelector('.puzzle-piece');
+    return getCenter(img);
+  });
+
+  // 3) Selected puzzle goes into the hand
+  const selectedImg = selectedBtn.querySelector('.puzzle-piece');
+  selectedImg.classList.add('is-held');
+  moveImgToCenter(selectedImg, getCenter(handSlot));
+
+  // 4) Remaining puzzles compact left into slots 0 and 1
+  const remaining = puzzleButtons.filter(b => b !== selectedBtn);
+
+  remaining.forEach((btn, idx) => {
+    const img = btn.querySelector('.puzzle-piece');
+    moveImgToCenter(img, slotCenters[idx]); // idx 0 -> slot0, idx 1 -> slot1
+  });
+
+  puzzleStage?.classList.add('is-active');
+}
+
+function setDescription(type) {
+  const cfg = puzzleTexts[type];
+  if (!cfg || !puzzleDescription) return;
+
+  puzzleDescription.hidden = false;
+  puzzleDescription.textContent = cfg.text;
+  puzzleDescription.className = `puzzle-description ${cfg.color}`;
+}
+
+function clearState() {
+  puzzleButtons.forEach(b => b.setAttribute('aria-expanded', 'false'));
+
+  puzzleStage?.classList.remove('is-active');
+
+  if (puzzleDescription) {
+    puzzleDescription.hidden = true;
+    puzzleDescription.textContent = '';
+    puzzleDescription.className = 'puzzle-description';
+  }
+
+  heldBtn = null;
+
+  // reset visual positions
+  hardResetToGridPositions();
+}
+
+// Start: no hand + no text + puzzles in grid
+clearState();
+
+puzzleButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const type = btn.dataset.puzzle;
+    if (!type) return;
+
+    // clicking same held puzzle: do nothing (your spec)
+    if (heldBtn === btn) return;
+
+    puzzleButtons.forEach(b => b.setAttribute('aria-expanded', 'false'));
+    btn.setAttribute('aria-expanded', 'true');
+
+    applyLayout(btn);
+    setDescription(type);
+
+    heldBtn = btn;
+  });
+});
+
+// Re-align after resize (keep it pinned to the hand)
+window.addEventListener('resize', () => {
+  if (!heldBtn) return;
+  applyLayout(heldBtn);
+});
 
     // ==========================================
     // SMOOTH SCROLLING FOR NAVIGATION LINKS

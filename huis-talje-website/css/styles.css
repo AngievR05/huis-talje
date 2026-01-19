@@ -283,7 +283,7 @@ nav a.active::after {
     padding: 75px 20px;
     text-align: center;
     position: relative;
-    overflow: visible;
+    overflow: hidden;
 }
 
 .section-title {
@@ -327,8 +327,8 @@ nav a.active::after {
     position: absolute;
     top: 8px;
     left: 10px;
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
     pointer-events: none;
 }
 
@@ -433,108 +433,198 @@ nav a.active::after {
     background: rgba(255,255,255,0.7);
 }
 
-/* Background Doodles */
+/* doodles must ignore content width */
 .doodle-background {
     position: absolute;
-    width: 80%;
-    max-width: 1000px;
+    top: 140px; /* aligns behind cards like Figma */
     left: 50%;
     transform: translateX(-50%);
-    top: 150px;
+
+    width: 100vw;              /* FULL SCREEN */
+    max-width: 100vw;
+
     z-index: 1;
     pointer-events: none;
 }
 
+/* scale SVG cleanly across screen */
 .doodles {
     width: 100%;
     height: auto;
-    object-fit: contain;
+    display: block;
+    object-fit: cover;
 }
-
 /* ==========================================
-   WHAT WE DO SECTION
+   WHAT WE DO SECTION (MATCHES UPDATED HTML)
    ========================================== */
+
 .what-we-do {
-    padding: 75px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+  padding: 75px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
 }
 
 .section-title-left {
-    font-size: 36px;
-    color: #0074EF;
-    margin-bottom: 50px;
+  font-size: 36px;
+  color: #0074EF;
+  margin-bottom: 50px;
 }
+
+/* =========================
+   WHAT WE DO - PUZZLE GRID (4 SVGs) — UPDATED
+   ========================= */
 
 .puzzle-section {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 50px;
-    position: relative;
-    min-height: 300px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+  margin-bottom: 18px;
 }
 
-.puzzle-pieces {
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
-    justify-content: center;
-    position: relative;
+/* 4-column grid: 3 puzzles + hand */
+.puzzle-stage {
+  width: min(980px, 92vw);
+  display: grid;
+  grid-template-columns: repeat(3, max-content) max-content;
+  align-items: center;
+  column-gap: 34px;
+  position: relative;
 }
 
+/* puzzle buttons */
 .puzzle-container {
-    position: relative;
-    width: 180px;
-    height: 180px;
-    cursor: pointer;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
 }
 
+.puzzle-container:focus-visible {
+  outline: 3px solid rgba(0, 116, 239, 0.45);
+  outline-offset: 6px;
+  border-radius: 12px;
+}
+
+/* puzzles same size */
 .puzzle-piece {
-    width: 180px;
-    height: auto;
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    position: relative;
+  width: 220px;
+  height: auto;
+  display: block;
+
+  filter: drop-shadow(0 12px 0 rgba(0,0,0,0.10));
+
+  transform: translate3d(0,0,0);
+  transition: transform 520ms cubic-bezier(.2,.9,.2,1), filter 220ms ease;
+  will-change: transform;
+
+  user-select: none;
+  pointer-events: none;
 }
 
-.puzzle-piece.in-hand {
-    transform: scale(1.3) translateX(200px);
-    z-index: 90;
+/* IMPORTANT: hover lift ONLY before anything is active */
+.puzzle-stage:not(.is-active) .puzzle-container:hover .puzzle-piece {
+  transform: translate3d(0,-6px,0);
 }
 
-/* Fixed Hand Position */
-.puzzle-hand-fixed {
-    position: absolute;
-    width: 200px;
-    height: auto;
-    right: -250px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    z-index: 100;
+/* selected puzzle depth + always on top */
+.puzzle-piece.is-held {
+  z-index: 999;
+  filter: drop-shadow(0 18px 0 rgba(0,0,0,0.14));
 }
 
+/* Hand lives in the 4th grid column */
+.hand-cell {
+  position: relative;
+  display: flex;
+
+  /* This is the key to "hand too much left":
+     make the hand column a stable space so it doesn’t overlap puzzles */
+  width: 380px;              /* was 340px */
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  z-index: 3;
+}
+
+/* Hand sits LOWER (still in grid, just offset within the column) */
+.puzzle-hand {
+  width: 340px;
+  height: auto;
+
+  opacity: 0;
+  transform: translate3d(10px, 6px, 0);
+  transition: opacity 260ms ease, transform 260ms ease;
+
+  margin-top: 56px;          /* was 40px (lower hand more) */
+  pointer-events: none;
+}
+
+/* show hand when active */
+.puzzle-stage.is-active .puzzle-hand {
+  opacity: 1;
+  transform: translate3d(0,0,0);
+}
+
+/* Grip target INSIDE hand cell */
+.hand-slot {
+  position: absolute;
+
+  /* Adjust these two for perfect “held” alignment */
+  right: 175px;              /* nudged to match wider hand column */
+  bottom: 132px;             /* nudged to keep grip point correct */
+
+  width: 8px;
+  height: 8px;
+  opacity: 0;
+}
+
+/* Description */
 .puzzle-description {
-    max-width: 800px;
-    margin: 0 auto 50px;
-    text-align: left;
-    min-height: 80px;
-    transition: color 0.5s ease;
+  max-width: 800px;
+  margin: 18px auto 50px;
+  text-align: left;
+  min-height: 80px;
+  line-height: 1.55;
+  font-size: 13px;
+  transition: color 0.35s ease;
 }
 
-.puzzle-description.orange {
-    color: #e8642f;
+.puzzle-description.orange { color: #E8642F; }
+.puzzle-description.pink   { color: #FF8CB7; }
+.puzzle-description.purple { color: #874FFF; }
+
+@media (max-width: 900px) {
+  .puzzle-stage {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 18px;
+    column-gap: 22px;
+    justify-items: center;
+  }
+
+  .puzzle-piece { width: 200px; }
+
+  .hand-cell {
+    grid-column: 1 / -1;
+    width: 320px;            /* more stable than 300 */
+    justify-content: center;
+  }
+
+  .puzzle-hand {
+    width: 300px;
+    margin-top: 26px;
+  }
+
+  .hand-slot {
+    right: 150px;
+    bottom: 120px;
+  }
 }
 
-.puzzle-description.pink {
-    color: #FF8CB7;
-}
-
-.puzzle-description.purple {
-    color: #874FFF;
-}
 
 /* ==========================================
    HEART OF HUIS TALJE SECTION

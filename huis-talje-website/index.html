@@ -30,6 +30,8 @@
                     <li><a href="pages/get-involved.html">Get Involved</a></li>
                     <li><a href="pages/inside-talje.html">Inside Huis Talje</a></li>
                     <li><a href="pages/profile.html">Profile</a></li>
+                    <li><a href="pages/auth.html">Log In</a></li>
+
                     <li class="dropdown">
                         <a href="#">Contact Us</a>
                         <ul class="dropdown-menu">
@@ -99,7 +101,7 @@
                 <span class="card-title">Our History</span>
                 <div class="card-icon"></div>
                 <div class="card-content">
-                    <h3>Our History</h3>
+                    <!-- <h3>Our History</h3> -->
                     <h4>The Story of Huis Talje</h4>
                     <p>Where compassion began with one child and grew into a home filled with hope.</p>
                     <p>Huis Talje's story began in 1999, inspired by one deeply moving event. When a two-year-old boy, severely abused and left with both mental and physical disabilities, had nowhere safe to go, the local community came together in compassion.</p>
@@ -114,7 +116,7 @@
                 <span class="card-title">How We Care</span>
                 <div class="card-icon"></div>
                 <div class="card-content">
-                    <h3>How We Care</h3>
+                    <!-- <h3>How We Care</h3> -->
                     <p>At Huis Talje, every detail of daily life is shaped by compassion, dignity, and the belief that every child deserves to thrive.</p>
                     <p>Our approach to care goes far beyond providing a roof and a meal — it is about creating a nurturing environment where children with special needs can feel safe, supported, and valued.</p>
                     <p>At Huis Talje Children's Home, we provide: Lodging, clothing, and nutritious meals. Safety, security, and stability. Comprehensive medical and dental care. Specialised therapies. Educational and recreational activities.</p>
@@ -128,7 +130,7 @@
                 <span class="card-title">Our Mission</span>
                 <div class="card-icon"></div>
                 <div class="card-content">
-                    <h3>Our Mission</h3>
+                    <!-- <h3>Our Mission</h3> -->
                     <p>Every action we take at Huis Talje is guided by one purpose: to create a life of dignity, care, and opportunity for children with severe intellectual and physical disabilities.</p>
                     <p>We aim to: Support and strengthen family life. Collaborate with government bodies and organisations. Provide dedicated care for all children referred to us. Offer training programmes. Raise essential funding. Promote awareness nationally and internationally.</p>
                     <p>Through compassion, collaboration, and commitment, Huis Talje continues to build a foundation of hope and opportunity — one child at a time.</p>
@@ -141,7 +143,7 @@
                 <span class="card-title">Community Support</span>
                 <div class="card-icon"></div>
                 <div class="card-content">
-                    <h3>Community Support</h3>
+                    <!-- <h3>Community Support</h3> -->
                     <p>Huis Talje Children's Home primarily cares for children from previously disadvantaged communities.</p>
                     <p>The heart of our support comes from the surrounding community. Local volunteers form our governing body, contribute their time, and assist with donations of food, clothing, equipment, and labour.</p>
                     <p>While the community continues to give generously, financial support alone cannot meet the centre's needs. We therefore appeal to organisations like yours to help us continue providing essential care.</p>
@@ -150,41 +152,40 @@
         </div>
     </section>
 
-    <!-- What We Do Section -->
-    <section class="what-we-do" id="what-we-do">
-        <h2 class="section-title-left">This Is What We Do</h2>
-        
-        <div class="puzzle-section">
-            <div class="puzzle-pieces">
-                <!-- Puzzle 1 - Current Projects (Orange) -->
-                <div class="puzzle-container" data-puzzle="current">
-                    <img src="images/homepage/Puzzle1.svg" alt="Current Projects" class="puzzle-piece">
-                </div>
+ <!-- What We Do Section -->
+<section class="what-we-do" id="what-we-do">
+  <h2 class="section-title-left">This Is What We Do</h2>
 
-                <!-- Puzzle 2 - Past Projects (Pink) -->
-                <div class="puzzle-container" data-puzzle="past">
-                    <img src="images/homepage/Puzzle2.svg" alt="Past Projects" class="puzzle-piece">
-                </div>
+<div class="puzzle-stage" id="puzzleStage">
+  <button class="puzzle-container" type="button" data-puzzle="current" aria-controls="puzzle-description" aria-expanded="false">
+    <img src="images/homepage/Puzzle1.svg" alt="Current Projects" class="puzzle-piece" draggable="false">
+  </button>
 
-                <!-- Puzzle 3 - Success Stories (Purple) - Default in hand -->
-                <div class="puzzle-container" data-puzzle="success">
-                    <img src="images/homepage/Puzzle3.svg" alt="Success Stories" class="puzzle-piece in-hand">
-                </div>
-            </div>
-            
-            <!-- Fixed Hand Position -->
-            <img src="images/homepage/Hand.svg" alt="Hand" class="puzzle-hand-fixed">
-        </div>
+  <button class="puzzle-container" type="button" data-puzzle="past" aria-controls="puzzle-description" aria-expanded="false">
+    <img src="images/homepage/Puzzle2.svg" alt="Past Projects" class="puzzle-piece" draggable="false">
+  </button>
 
-        <p class="puzzle-description purple" id="puzzle-description">
-            Every child at Huis Talje has a unique journey, and our success stories celebrate their growth, resilience, and achievements. From milestones in learning and literacy to personal triumphs, these stories show the lasting impact of care, support, and community involvement.
-        </p>
-        
-        <button class="btn btn-green">
-            <img src="images/homepage/Shine.svg" alt="" class="btn-shine" aria-hidden="true">
-            Learn More
-        </button>
-    </section>
+  <button class="puzzle-container" type="button" data-puzzle="success" aria-controls="puzzle-description" aria-expanded="false">
+    <img src="images/homepage/Puzzle3.svg" alt="Success Stories" class="puzzle-piece" draggable="false">
+  </button>
+
+  <!-- 4th column -->
+  <div class="hand-cell" aria-hidden="true">
+    <span class="hand-slot" id="handSlot"></span>
+    <img src="images/homepage/Hand.svg" alt="" class="puzzle-hand" id="puzzleHand">
+  </div>
+</div>
+
+
+  <!-- ONLY ONE description. starts hidden. JS fills + shows it -->
+  <p class="puzzle-description" id="puzzle-description" aria-live="polite" hidden></p>
+
+  <button class="btn btn-green">
+    <img src="images/homepage/Shine.svg" alt="" class="btn-shine" aria-hidden="true">
+    Learn More
+  </button>
+</section>
+
 
     <!-- Heart of Huis Talje Section -->
     <section class="heart-section" id="heart-of-huis-talje">
@@ -219,7 +220,7 @@
                     <p>Subscribe to our newsletter</p>
                     <form class="newsletter-form">
                         <input type="email" placeholder="Email address" required>
-                        <button type="submit" aria-label="Subscribe">→</button>
+                        <button type="submit" aria-label="Subscribe"><img src="images/icons/PencilIcon.svg" alt="Arrow" class="arrow-icon"></button>
                     </form>
                 </div>
 
@@ -243,27 +244,17 @@
                     </ul>
                     
                     <div class="social-icons">
-                        <a href="#" class="social-icon" aria-label="Instagram">
-                            <!-- Instagram Icon Placeholder -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-icon" aria-label="Facebook">
-                            <!-- Facebook Icon Placeholder -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-icon" aria-label="TikTok">
-                            <!-- TikTok Icon Placeholder -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
-                            </svg>
-                        </a>
-                    </div>
+  <a href="#" class="social-icon" aria-label="Instagram">
+    <img src="images/icons/InstaIcon.svg" alt="" aria-hidden="true">
+  </a>
+  <a href="#" class="social-icon" aria-label="Facebook">
+    <img src="images/icons/FaceIcon.svg" alt="" aria-hidden="true">
+  </a>
+  <a href="#" class="social-icon" aria-label="TikTok">
+    <img src="images/icons/TikIcon.svg" alt="" aria-hidden="true">
+  </a>
+</div>
+
                 </div>
             </div>
         </div>
