@@ -32,12 +32,14 @@
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
+    overflow: hidden;
 }
 
 .hero-image {
-    width: 100%;
+    width: 99%;
     height: auto;
     display: block;
+    overflow: hidden;
 }
 
 .section-divider {

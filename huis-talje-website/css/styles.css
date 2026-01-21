@@ -240,7 +240,7 @@ nav a.active::after {
 .hero-subtext {
     font-size: 18px;
     color: #e8642f;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .squiggly-border {
@@ -249,7 +249,7 @@ nav a.active::after {
     display: block;
     margin: 0;
     position: absolute;
-    bottom: 0;
+    bottom: -20px;
     left: 0;
 }
 
@@ -454,174 +454,147 @@ nav a.active::after {
     display: block;
     object-fit: cover;
 }
-/* ==========================================
-   WHAT WE DO SECTION (MATCHES UPDATED HTML)
-   ========================================== */
-
-.what-we-do {
-  padding: 75px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.section-title-left {
-  font-size: 36px;
-  color: #0074EF;
-  margin-bottom: 50px;
-}
-
 /* =========================
-   WHAT WE DO - PUZZLE GRID (4 SVGs) — UPDATED
+   WHAT WE DO — CENTERED VERSION
    ========================= */
 
+.what-we-do {
+  text-align: center;
+}
+
+.what-we-do h2{
+color: #0074EF;
+}
+
+/* Puzzle container */
 .puzzle-section {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-top: 28px;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
 }
 
-/* 4-column grid: 3 puzzles + hand */
-.puzzle-stage {
+/* Puzzle row */
+.puzzle-row {
   width: min(980px, 92vw);
-  display: grid;
-  grid-template-columns: repeat(3, max-content) max-content;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  column-gap: 34px;
-  position: relative;
+  gap: 48px;
+  flex-wrap: wrap;
 }
 
-/* puzzle buttons */
-.puzzle-container {
+/* Buttons */
+.puzzle-btn {
   appearance: none;
   border: 0;
   background: transparent;
   padding: 0;
   cursor: pointer;
   position: relative;
-  z-index: 2;
 }
 
-.puzzle-container:focus-visible {
+.puzzle-btn:focus-visible {
   outline: 3px solid rgba(0, 116, 239, 0.45);
-  outline-offset: 6px;
-  border-radius: 12px;
+  outline-offset: 10px;
+  border-radius: 18px;
 }
 
-/* puzzles same size */
-.puzzle-piece {
-  width: 220px;
+/* Puzzle SVG */
+.puzzle-img {
+  width: 260px;
   height: auto;
   display: block;
 
-  filter: drop-shadow(0 12px 0 rgba(0,0,0,0.10));
-
+  filter: drop-shadow(0 16px 0 rgba(0,0,0,0.14));
   transform: translate3d(0,0,0);
-  transition: transform 520ms cubic-bezier(.2,.9,.2,1), filter 220ms ease;
-  will-change: transform;
-
+  transition: transform 220ms ease, filter 220ms ease;
   user-select: none;
   pointer-events: none;
 }
 
-/* IMPORTANT: hover lift ONLY before anything is active */
-.puzzle-stage:not(.is-active) .puzzle-container:hover .puzzle-piece {
-  transform: translate3d(0,-6px,0);
+/* Hover lift */
+.puzzle-btn:hover .puzzle-img {
+  transform: translate3d(0,-8px,0);
 }
 
-/* selected puzzle depth + always on top */
-.puzzle-piece.is-held {
-  z-index: 999;
-  filter: drop-shadow(0 18px 0 rgba(0,0,0,0.14));
+/* Selected puzzle */
+.puzzle-btn.is-active .puzzle-img {
+  transform: translate3d(0,-10px,0) scale(1.03);
+  filter:
+    drop-shadow(0 22px 0 rgba(0,0,0,0.18))
+    drop-shadow(0 0 18px rgba(255,255,255,0.55));
 }
 
-/* Hand lives in the 4th grid column */
-.hand-cell {
-  position: relative;
-  display: flex;
-
-  /* This is the key to "hand too much left":
-     make the hand column a stable space so it doesn’t overlap puzzles */
-  width: 380px;              /* was 340px */
-  justify-content: flex-end;
-  align-items: flex-end;
-
-  z-index: 3;
+/* Click pop animation */
+.puzzle-btn.is-bounce .puzzle-img {
+  animation: puzzlePop 420ms cubic-bezier(.2, .9, .2, 1);
 }
 
-/* Hand sits LOWER (still in grid, just offset within the column) */
-.puzzle-hand {
-  width: 340px;
-  height: auto;
-
-  opacity: 0;
-  transform: translate3d(10px, 6px, 0);
-  transition: opacity 260ms ease, transform 260ms ease;
-
-  margin-top: 56px;          /* was 40px (lower hand more) */
-  pointer-events: none;
+@keyframes puzzlePop {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.06); }
+  70%  { transform: scale(1.02); }
+  100% { transform: scale(1); }
 }
 
-/* show hand when active */
-.puzzle-stage.is-active .puzzle-hand {
+/* =========================
+   DESCRIPTION TEXT
+   ========================= */
+
+.puzzle-description {
+  max-width: 720px;
+  margin: 26px auto 28px;
+  text-align: center;
+
+  line-height: 1.55;
+  font-size: 18px;
+
   opacity: 1;
   transform: translate3d(0,0,0);
-}
-
-/* Grip target INSIDE hand cell */
-.hand-slot {
-  position: absolute;
-
-  /* Adjust these two for perfect “held” alignment */
-  right: 175px;              /* nudged to match wider hand column */
-  bottom: 132px;             /* nudged to keep grip point correct */
-
-  width: 8px;
-  height: 8px;
-  opacity: 0;
-}
-
-/* Description */
-.puzzle-description {
-  max-width: 800px;
-  margin: 18px auto 50px;
-  text-align: left;
-  min-height: 80px;
-  line-height: 1.55;
-  font-size: 13px;
-  transition: color 0.35s ease;
 }
 
 .puzzle-description.orange { color: #E8642F; }
 .puzzle-description.pink   { color: #FF8CB7; }
 .puzzle-description.purple { color: #874FFF; }
 
+.puzzle-description.is-switch {
+  animation: textFadeUp 360ms ease;
+}
+
+@keyframes textFadeUp {
+  0%   { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Button alignment */
+.what-we-do .btn {
+  margin: 0 auto;
+  display: inline-flex;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
 @media (max-width: 900px) {
-  .puzzle-stage {
-    grid-template-columns: 1fr 1fr;
-    row-gap: 18px;
-    column-gap: 22px;
-    justify-items: center;
+  .puzzle-img {
+    width: 230px;
   }
 
-  .puzzle-piece { width: 200px; }
-
-  .hand-cell {
-    grid-column: 1 / -1;
-    width: 320px;            /* more stable than 300 */
-    justify-content: center;
+  .puzzle-row {
+    gap: 36px;
   }
 
-  .puzzle-hand {
-    width: 300px;
-    margin-top: 26px;
+  .puzzle-description {
+    font-size: 16px;
   }
+}
 
-  .hand-slot {
-    right: 150px;
-    bottom: 120px;
+@media (max-width: 560px) {
+  .puzzle-img {
+    width: 210px;
   }
 }
 
@@ -631,7 +604,7 @@ nav a.active::after {
    ========================================== */
 .heart-section {
     max-width: 900px;
-    margin: 75px auto;
+    margin: 15px auto;
     position: relative;
     padding: 0 20px;
 }

@@ -19,6 +19,7 @@ body {
 
   /* Keep layout consistent */
   font-family: 'Roboto', sans-serif;
+  align-items: center;
 }
 
 /* Optional overlay for readability (keeps doodles visible but calms them) */
@@ -47,16 +48,18 @@ body::before {
 .auth-hero-text h1 {
   font-size: 34px;
   color: #0074EF;
-  margin: 0;
+  margin-bottom: 15px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 
 /* Main section */
 .auth-section {
   position: relative;
   z-index: 1;
-  padding: 18px 20px 70px;
+  padding: 18px 20px 0px;
   max-width: 1100px;
-  margin: 0 auto;
+  margin: 35px auto;
 }
 
 /* Card */

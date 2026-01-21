@@ -67,14 +67,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+/// ==========================================
+// WHAT WE DO - PUZZLE TEXT SWITCH (STATIC PUZZLES)
 // ==========================================
-// PUZZLE PIECE INTERACTION (STABLE GRID SWAP)
-// ==========================================
-const puzzleStage = document.getElementById('puzzleStage');
-const handSlot = document.getElementById('handSlot');
-
-const puzzleButtons = Array.from(document.querySelectorAll('.puzzle-container'));
-const puzzleDescription = document.getElementById('puzzle-description');
+const puzzleButtons = Array.from(document.querySelectorAll(".puzzle-btn"));
+const puzzleDesc = document.getElementById("puzzle-description");
 
 const puzzleTexts = {
   current: {
@@ -91,118 +88,45 @@ const puzzleTexts = {
   }
 };
 
-let heldBtn = null;
-
-function getCenter(el) {
-  const r = el.getBoundingClientRect();
-  return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
-}
-
-function moveImgToCenter(img, targetCenter) {
-  const from = getCenter(img);
-  const dx = targetCenter.x - from.x;
-  const dy = targetCenter.y - from.y;
-  img.style.transform = `translate3d(${dx}px, ${dy}px, 0)`;
-}
-
-function hardResetToGridPositions() {
-  // Turn off transitions so reset is instant and measurable
-  puzzleButtons.forEach(btn => {
-    const img = btn.querySelector('.puzzle-piece');
-    img.classList.remove('is-held');
-    img.style.transition = 'none';
-    img.style.transform = 'translate3d(0,0,0)';
+function setActive(btn) {
+  puzzleButtons.forEach(b => {
+    b.classList.remove("is-active");
+    b.setAttribute("aria-selected", "false");
   });
 
-  // Force layout flush (critical)
-  void puzzleStage.offsetHeight;
-
-  // Restore transitions
-  puzzleButtons.forEach(btn => {
-    const img = btn.querySelector('.puzzle-piece');
-    img.style.transition = '';
-  });
+  btn.classList.add("is-active");
+  btn.setAttribute("aria-selected", "true");
 }
 
-function applyLayout(selectedBtn) {
-  if (!handSlot) return;
-
-  // 1) Hard reset so DOMRects are stable
-  hardResetToGridPositions();
-
-  // 2) Capture the 3 grid slot centers (where puzzles should sit when not held)
-  const slotCenters = puzzleButtons.map(btn => {
-    const img = btn.querySelector('.puzzle-piece');
-    return getCenter(img);
-  });
-
-  // 3) Selected puzzle goes into the hand
-  const selectedImg = selectedBtn.querySelector('.puzzle-piece');
-  selectedImg.classList.add('is-held');
-  moveImgToCenter(selectedImg, getCenter(handSlot));
-
-  // 4) Remaining puzzles compact left into slots 0 and 1
-  const remaining = puzzleButtons.filter(b => b !== selectedBtn);
-
-  remaining.forEach((btn, idx) => {
-    const img = btn.querySelector('.puzzle-piece');
-    moveImgToCenter(img, slotCenters[idx]); // idx 0 -> slot0, idx 1 -> slot1
-  });
-
-  puzzleStage?.classList.add('is-active');
+function animateClick(btn) {
+  btn.classList.remove("is-bounce");
+  // force reflow so animation restarts every click
+  void btn.offsetWidth;
+  btn.classList.add("is-bounce");
+  setTimeout(() => btn.classList.remove("is-bounce"), 450);
 }
 
-function setDescription(type) {
-  const cfg = puzzleTexts[type];
-  if (!cfg || !puzzleDescription) return;
-
-  puzzleDescription.hidden = false;
-  puzzleDescription.textContent = cfg.text;
-  puzzleDescription.className = `puzzle-description ${cfg.color}`;
+function animateTextSwap() {
+  puzzleDesc.classList.remove("is-switch");
+  void puzzleDesc.offsetWidth;
+  puzzleDesc.classList.add("is-switch");
 }
-
-function clearState() {
-  puzzleButtons.forEach(b => b.setAttribute('aria-expanded', 'false'));
-
-  puzzleStage?.classList.remove('is-active');
-
-  if (puzzleDescription) {
-    puzzleDescription.hidden = true;
-    puzzleDescription.textContent = '';
-    puzzleDescription.className = 'puzzle-description';
-  }
-
-  heldBtn = null;
-
-  // reset visual positions
-  hardResetToGridPositions();
-}
-
-// Start: no hand + no text + puzzles in grid
-clearState();
 
 puzzleButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
+  btn.addEventListener("click", () => {
     const type = btn.dataset.puzzle;
-    if (!type) return;
+    const cfg = puzzleTexts[type];
+    if (!cfg) return;
 
-    // clicking same held puzzle: do nothing (your spec)
-    if (heldBtn === btn) return;
+    // visual selection + bounce
+    setActive(btn);
+    animateClick(btn);
 
-    puzzleButtons.forEach(b => b.setAttribute('aria-expanded', 'false'));
-    btn.setAttribute('aria-expanded', 'true');
-
-    applyLayout(btn);
-    setDescription(type);
-
-    heldBtn = btn;
+    // text + colour + animate
+    puzzleDesc.textContent = cfg.text;
+    puzzleDesc.className = `puzzle-description ${cfg.color}`;
+    animateTextSwap();
   });
-});
-
-// Re-align after resize (keep it pinned to the hand)
-window.addEventListener('resize', () => {
-  if (!heldBtn) return;
-  applyLayout(heldBtn);
 });
 
     // ==========================================

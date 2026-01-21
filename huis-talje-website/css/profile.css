@@ -4,84 +4,106 @@
 
 /* Hero Section */
 .profile-hero {
-    background: #FFF9E9;
-    padding: 60px 20px 0;
-    text-align: center;
-    position: relative;
-    background-image: url('../images/profile/Header.svg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100% auto;
+  background-color: #FFF9E9;
+  padding: 70px 20px 0;
+  text-align: center;
+  position: relative;
+
+  /* Full-width illustration like Figma */
+  background-image: url('../images/profile/Header.svg');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover; /* <- key change */
 }
 
+/* Keep text centered and sitting nicely inside the hero */
 .hero-text {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 0 20px 60px;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 20px 70px; /* a bit more bottom spacing like the target */
 }
 
 .hero-text h1 {
-    font-family: 'Over the Rainbow', cursive;
-    color: #e8642f;
-    font-size: 52px;
-    margin-bottom: 25px;
-    line-height: 1.2;
+  font-family: 'Over the Rainbow', cursive;
+  color: #e8642f;
+  font-size: 52px;
+  margin-bottom: 18px;
+  line-height: 1.15;
 }
 
 .hero-text p {
-    color: #e8642f;
-    font-size: 16px;
-    line-height: 1.8;
+  color: #e8642f;
+  font-size: 16px;      /* your target has smaller copy */
+  line-height: 1.7;
+  max-width: 520px;     /* tighter like Figma */
+  margin: 0 auto;
 }
 
 .section-divider {
-    width: 100%;
-    display: block;
-    margin: 0;
+  width: 100%;
+  display: block;
+  margin-top: 130px;
 }
+
 
 /* Welcome Section */
 .welcome-section {
-    padding: 60px 20px;
-    background: #FFF9E9;
+  padding: 35px 20px;
+  background: #FFF9E9;
 }
 
 .welcome-card {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    min-height: 140px;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+
+  /* Makes space for the left/right decoration SVGs */
+  padding: 0 90px;
+  min-height: 110px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Don’t stretch the border SVG */
+.welcome-border {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* <- key change */
+  z-index: 1;
+  pointer-events: none;
 }
 
 .welcome-decoration {
-    width: 80px;
-    height: auto;
-    flex-shrink: 0;
-    z-index: 2;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 90px;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
 }
 
-.welcome-border {
-    position: absolute;
-    width: calc(100% - 160px);
-    height: 100%;
-    left: 80px;
-    z-index: 1;
-}
+.left-decoration { left: 0; }
+.right-decoration { right: 0; }
 
 .welcome-content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 680px;
-    padding: 30px 60px;
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 680px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* more “Figma” spacing */
+  padding: 22px 30px;
 }
+
 
 .welcome-text h2 {
     font-family: 'Roboto', sans-serif;
@@ -123,7 +145,7 @@
 
 /* Contribution Section */
 .contribution-section {
-    padding: 60px 20px;
+    padding: 20px 20px;
     background: #FFF9E9;
     text-align: center;
 }
@@ -176,13 +198,13 @@
 }
 
 .contribution-icon {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     margin-bottom: 20px;
 }
 
 .contribution-amount {
-    font-size: 42px;
+    font-size: 38px;
     font-weight: 700;
     margin-bottom: 10px;
     line-height: 1;
@@ -237,17 +259,18 @@
 
 /* Activity Section */
 .activity-section {
-    padding: 70px 20px;
-    background: #FFF9E9;
+  padding: 55px 20px;
+  background: #FFF9E9;
 }
 
 .activity-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px; /* tighter than 80 */
 }
+
 
 .contributions-list h3,
 .upcoming-events h3 {
@@ -310,9 +333,12 @@
 } */
 
 .contribution-item-icon img {
-    width: 100%;
-    height: 2100%;
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  display: block;
 }
+
 
 .contribution-item-content {
     flex: 1;

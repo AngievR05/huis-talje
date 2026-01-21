@@ -152,39 +152,37 @@
         </div>
     </section>
 
- <!-- What We Do Section -->
+<!-- What We Do Section -->
 <section class="what-we-do" id="what-we-do">
   <h2 class="section-title-left">This Is What We Do</h2>
 
-<div class="puzzle-stage" id="puzzleStage">
-  <button class="puzzle-container" type="button" data-puzzle="current" aria-controls="puzzle-description" aria-expanded="false">
-    <img src="images/homepage/Puzzle1.svg" alt="Current Projects" class="puzzle-piece" draggable="false">
-  </button>
+  <div class="puzzle-section">
+    <div class="puzzle-row" role="tablist" aria-label="What we do categories">
+      <button class="puzzle-btn is-active" type="button" data-puzzle="current" aria-selected="true">
+        <img src="images/homepage/Puzzle1.svg" alt="Current Projects" class="puzzle-img" draggable="false">
+      </button>
 
-  <button class="puzzle-container" type="button" data-puzzle="past" aria-controls="puzzle-description" aria-expanded="false">
-    <img src="images/homepage/Puzzle2.svg" alt="Past Projects" class="puzzle-piece" draggable="false">
-  </button>
+      <button class="puzzle-btn" type="button" data-puzzle="past" aria-selected="false">
+        <img src="images/homepage/Puzzle2.svg" alt="Past Projects" class="puzzle-img" draggable="false">
+      </button>
 
-  <button class="puzzle-container" type="button" data-puzzle="success" aria-controls="puzzle-description" aria-expanded="false">
-    <img src="images/homepage/Puzzle3.svg" alt="Success Stories" class="puzzle-piece" draggable="false">
-  </button>
-
-  <!-- 4th column -->
-  <div class="hand-cell" aria-hidden="true">
-    <span class="hand-slot" id="handSlot"></span>
-    <img src="images/homepage/Hand.svg" alt="" class="puzzle-hand" id="puzzleHand">
+      <button class="puzzle-btn" type="button" data-puzzle="success" aria-selected="false">
+        <img src="images/homepage/Puzzle3.svg" alt="Success Stories" class="puzzle-img" draggable="false">
+      </button>
+    </div>
   </div>
-</div>
 
-
-  <!-- ONLY ONE description. starts hidden. JS fills + shows it -->
-  <p class="puzzle-description" id="puzzle-description" aria-live="polite" hidden></p>
+  <!-- Default: ORANGE text always shows first -->
+  <p class="puzzle-description orange" id="puzzle-description" aria-live="polite">
+    Discover Huis Talje's journey of care and growth, from our current projects building brighter futures, to the past projects that shaped our home, and the success stories that celebrate the children's incredible resilience and achievements.
+  </p>
 
   <button class="btn btn-green">
     <img src="images/homepage/Shine.svg" alt="" class="btn-shine" aria-hidden="true">
     Learn More
   </button>
 </section>
+
 
 
     <!-- Heart of Huis Talje Section -->
